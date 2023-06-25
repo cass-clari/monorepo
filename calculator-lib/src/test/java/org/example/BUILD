@@ -16,7 +16,13 @@ java_library(
 java_test(
     name = "TestCalculator",
     size = "small",
-    args = ["calculator-lib/src/test/java/org/example/testNG.yaml"],
+    args = [
+        "-d",
+        "test_report",
+        "-usedefaultlisteners",
+        "false",
+        "calculator-lib/src/test/java/org/example/testNG.yaml",
+    ],
     data = ["testNG.yaml"],
     main_class = "org.testng.TestNG",
     use_testrunner = False,

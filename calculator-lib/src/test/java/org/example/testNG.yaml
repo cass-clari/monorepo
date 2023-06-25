@@ -1,0 +1,7 @@
+name: SingleSuite
+threadCount: 1
+
+tests:
+  - name: CalculatorTest1
+    classes:
+      - test.java.org.example.TestCalculator

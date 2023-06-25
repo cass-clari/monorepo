@@ -5,10 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import main.java.org.example.Adder;
 
-// import java.io.ByteArrayOutputStream;
-// import java.io.PrintStream;
-// import java.nio.charset.StandardCharsets;
-
 public class TestAdder {
 
 @Test

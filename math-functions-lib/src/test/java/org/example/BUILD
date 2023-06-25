@@ -1,4 +1,5 @@
 load("@rules_java//java:defs.bzl", "java_test")
+load("@rules_java//java:defs.bzl", "java_library")
 
 java_test(
     name = "TestAdder",

@@ -12,8 +12,8 @@ java_library(
 java_library(
     name = "testNG",
     exports = [
-        "@maven//:org_testng_testng",
         "@maven//:org_slf4j_slf4j_simple",
-        "@maven//:org_yaml_snakeyaml"
+        "@maven//:org_testng_testng",
+        "@maven//:org_yaml_snakeyaml",
     ],
 )

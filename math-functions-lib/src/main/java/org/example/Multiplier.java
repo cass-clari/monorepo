@@ -6,8 +6,8 @@ public class Multiplier {
         return i * j;
     }
 
-    public int multiply2( int i, int j ) {
-        return i * j;
-    }
+//    public int multiply2( int i, int j ) {
+//        return i * j;
+//    }
     
 }

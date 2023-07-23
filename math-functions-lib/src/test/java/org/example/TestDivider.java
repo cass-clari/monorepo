@@ -13,7 +13,7 @@ public class TestDivider {
     assertEquals(2, d.divide(2, 1));
   }
 
-  @Test
+  @Test(expected = ArithmeticException.class)
   public void testDivideByZero() throws Exception {
     Divider d = new Divider();
     assertEquals(0, d.divide(2, 0));

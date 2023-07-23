@@ -18,6 +18,7 @@ public class TestCalculator {
     public void test100() {
         Calculator c = new Calculator();
         assertEquals(100, c.addTwoInts(50, 50));
+        assertEquals(101, c.addTwoInts(50, 50));
     }
 
     @Test

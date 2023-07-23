@@ -6,7 +6,6 @@ java_library(
         "*.java",
     ]),
     deps = [
-        "@monorepo//math-functions-lib/src/main/java/org/example:Adder",
-        "@monorepo//math-functions-lib/src/main/java/org/example:MathFunctions",
+        "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )

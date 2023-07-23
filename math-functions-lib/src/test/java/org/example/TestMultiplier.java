@@ -12,6 +12,7 @@ public class TestMultiplier {
     Multiplier m = new Multiplier();
     assertEquals(2, m.multiply(2, 1));
     assertEquals(9, m.multiply(3, 3));
+//    assertEquals(10, m.multiply(3, 3));
   }
  
 }

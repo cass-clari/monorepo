@@ -25,5 +25,6 @@ public class TestCalculator {
         Calculator c = new Calculator();
         assertEquals(10, c.subtractTwoInts(60, 50));
         assertEquals(20, c.subtractTwoInts(60, 50));
+        assertEquals(30, c.subtractTwoInts(60, 50));
     }
 }

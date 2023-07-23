@@ -22,3 +22,14 @@ java_test(
         "@monorepo//math-functions-lib/src/main/java/org/example:MathFunctions",
     ],
 )
+
+java_test(
+    name = "TestMultiplier",
+    size = "small",
+    srcs = ["TestMultiplier.java"],
+    test_class = "test.java.org.example.TestMultiplier",
+    deps = [
+        "//third_party:junit4",
+        "@monorepo//math-functions-lib/src/main/java/org/example:MathFunctions",
+    ],
+)

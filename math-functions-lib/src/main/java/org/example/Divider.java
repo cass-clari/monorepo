@@ -1,4 +1,4 @@
-package main.java.org.example;
+    package main.java.org.example;
 
 public class Divider {
     

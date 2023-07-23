@@ -7,17 +7,17 @@ public class Calculator {
         return adder.add(i, j);
     }
 
-    public int MultiplyTwoInts(int i, int j) {
+    public int multiplyTwoInts(int i, int j) {
         Multiplier multi = new Multiplier();
         return multi.multiply(i, j);
     }
 
-    public int DivideTwoInts(int i, int j) {
+    public int divideTwoInts(int i, int j) {
         Divider divider = new Divider();
         return divider.divide(i, j);
     }
 
-    public int SubtractTwoInts(int i, int j) {
+    public int subtractTwoInts(int i, int j) {
         Subtractor subtractor = new Subtractor();
         return subtractor.subtract(i, j);
     }

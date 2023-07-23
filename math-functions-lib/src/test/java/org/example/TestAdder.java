@@ -19,5 +19,11 @@ public class TestAdder {
     Adder adder = new Adder();
     assertEquals(-2, adder.add(-3, 1));
   }
+
+  @Test
+  public void testAdd2() throws Exception {
+    Adder adder = new Adder();
+    assertEquals(10, adder.add2(5, 5));
+  }
  
 }

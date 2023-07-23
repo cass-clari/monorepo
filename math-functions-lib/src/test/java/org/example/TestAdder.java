@@ -23,7 +23,7 @@ public class TestAdder {
   @Test
   public void testAdd2() throws Exception {
     Adder adder = new Adder();
-    assertEquals(9, adder.add2(5, 5));
+    assertEquals(10, adder.add2(5, 5));
   }
  
 }

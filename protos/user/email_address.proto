@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "protos.user";
+option java_outer_classname = "EmailOuter";
+
+package protos.user;
+
+message EmailAddress {
+  optional string email = 1;
+}

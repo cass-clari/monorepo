@@ -1,0 +1,14 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "user_proto",
+    srcs = ["user.proto"],
+    visibility = ["//visibility:public"],
+    deps = [":email_address_proto"],
+)
+
+proto_library(
+    name = "email_address_proto",
+    srcs = ["email_address.proto"],
+    visibility = ["//visibility:public"],
+)

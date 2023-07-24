@@ -17,3 +17,10 @@ java_library(
         "@maven//:org_yaml_snakeyaml",
     ],
 )
+
+java_library(
+    name = "protobuf",
+    exports = [
+        "@maven//:com_google_protobuf_protobuf_java",
+    ],
+)

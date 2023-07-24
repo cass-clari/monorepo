@@ -51,3 +51,14 @@ java_test(
         "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )
+
+java_test(
+    name = "TestDivider",
+    size = "small",
+    srcs = ["TestDivider.java"],
+    test_class = "test.java.org.example.TestDivider",
+    deps = [
+        "//third_party:junit4",
+        "@monorepo//math-functions-lib/src/main/java/org/example",
+    ],
+)

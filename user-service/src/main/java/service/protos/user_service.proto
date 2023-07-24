@@ -1,16 +1,14 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "services";
+option java_package = "service.protos";
 
-package service;
+package service.protos;
 
 import "protos/user/user.proto";
 
-
-// The greeting service definition.
 service UserService {
-  // Sends a greeting
+  // Logs in a user
   rpc Login (LoginUser) returns (LoginResponse) {}
 }
 
@@ -24,5 +22,5 @@ message LoginUser {
 message LoginResponse {
   string message = 1;
   int32 status = 2;
-  protos.user.User user = 3;
+  .protos.user.User user = 3;
 }

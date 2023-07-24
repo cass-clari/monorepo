@@ -1,10 +1,12 @@
-package service;
+package service.grpc;
 
-import services.*;
+import io.grpc.stub.StreamObserver;
+import service.protos.LoginResponse;
+import service.protos.LoginUser;
+import service.protos.UserServiceGrpc;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
-import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,12 +16,12 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     private void start() throws IOException {
         /* The port on which the server should run */
-        int port = 50051;
+        int port = 8080;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
                 .addService(new UserService())
                 .build()
                 .start();
-        //logger.info("Server started, listening on " + port);
+        System.out.println("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
@@ -61,6 +63,7 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
     public void login(LoginUser req, StreamObserver<LoginResponse> responseObserver) {
+        System.out.println("Received request: " + req.toString());
         LoginResponse reply = LoginResponse.newBuilder().setMessage("Hello there!").build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();

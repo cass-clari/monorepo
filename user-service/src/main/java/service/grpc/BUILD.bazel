@@ -7,12 +7,15 @@ java_grpc_library(
         "//protos/user:user_proto",
         "//user-service/src/main/java/service/protos:user_service_grpc",
     ],
+    visibility = [
+        "//visibility:public",
+    ],
 )
 
 java_binary(
-    name = "rpc",
+    name = "grpc",
     srcs = ["UserService.java"],
-    main_class = "service.UserService",
+    main_class = "service.grpc.UserService",
     deps = [
         ":user_service_java_grpc",
         "//third_party:grpc",

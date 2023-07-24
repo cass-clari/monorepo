@@ -1,0 +1,9 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
+
+java_proto_library(
+    name = "user_java_proto",
+    protos = [
+        "//protos/user:email_address_proto",
+        "//protos/user:user_proto",
+    ],
+)

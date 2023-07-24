@@ -1,0 +1,12 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "user_service_grpc",
+    srcs = [
+        "user_service.proto",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//protos/user:user_proto",
+    ],
+)

@@ -31,4 +31,16 @@ public class TestCalculator {
         Calculator c = new Calculator();
         assertEquals(3000, c.multiplyTwoInts(60, 50));
     }
+
+    @Test
+    public void testS12() {
+        Calculator c = new Calculator();
+        assertEquals(10, c.divideTwoInts(60, 6));
+    }
+
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testS13() {
+        Calculator c = new Calculator();
+        assertEquals(10, c.divideTwoInts(60, 0));
+    }
 }

@@ -18,5 +18,17 @@ public class TestDivider {
     Divider d = new Divider();
     assertEquals(0, d.divide(2, 0));
   }
+
+  @Test(expected = RuntimeException.class)
+  public void testDivideByZero2() throws Exception {
+    Divider d = new Divider();
+    assertEquals(0, d.divide2(2, 0));
+  }
+
+  @Test
+  public void testDivideByZero3() throws Exception {
+    Divider d = new Divider();
+    assertEquals(2, d.divide2(2, 1));
+  }
  
 }

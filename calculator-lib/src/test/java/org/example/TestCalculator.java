@@ -25,4 +25,10 @@ public class TestCalculator {
         Calculator c = new Calculator();
         assertEquals(10, c.subtractTwoInts(60, 50));
     }
+
+    @Test
+    public void testS11() {
+        Calculator c = new Calculator();
+        assertEquals(3000, c.multiplyTwoInts(60, 50));
+    }
 }

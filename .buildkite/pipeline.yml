@@ -1,0 +1,5 @@
+steps:
+  - label: ":bazel: Build"
+    commands:
+      - bazel coverage --combined_report=lcov \"//...\"
+      - codecov -t d60cc17b-8753-4639-9d85-79dd58f645a1 -f bazel-first-pipeline/bazel-out/_coverage/_coverage_report.dat

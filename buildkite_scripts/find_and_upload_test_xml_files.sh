@@ -4,7 +4,7 @@
 echo
 echo "Uploading unit test xml files..."
 
-for n in $(find -L ./bazel-testlogs | grep test.xml)
+for n in $(find -L ./bazel-testlogs | grep test.xml | grep ${1})
 do
   echo "   ${n}"
   curl -X POST \

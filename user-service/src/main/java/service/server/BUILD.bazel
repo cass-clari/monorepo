@@ -6,6 +6,7 @@ java_binary(
     main_class = "service.server.UserService",
     visibility = [
         "//user-service/src/test/L0/java/service/server:__pkg__",
+        "//user-service/src/test/L1/java/service/server:__pkg__",
     ],
     deps = [
         ":user_service_java_grpc",
@@ -23,5 +24,6 @@ java_grpc_library(
     visibility = [
         "//user-service/src/main/java/service/client:__pkg__",
         "//user-service/src/test/L0/java/service/server:__pkg__",
+        "//user-service/src/test/L1/java/service/server:__pkg__",
     ],
 )

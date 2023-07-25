@@ -1,0 +1,26 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_binary(
+    name = "server",
+    srcs = ["UserService.java"],
+    main_class = "service.server.UserService",
+    visibility = [
+        "//user-service/src/test/l0/java/service/server:__pkg__",
+    ],
+    deps = [
+        ":user_service_java_grpc",
+        "//third_party:grpc",
+    ],
+)
+
+java_grpc_library(
+    name = "user_service_java_grpc",
+    protos = [
+        "//protos/user:email_address_proto",
+        "//protos/user:user_proto",
+        "//user-service/src/main/java/service/protos",
+    ],
+    visibility = [
+        "//user-service/src/main/java/service/client:__pkg__",
+    ],
+)

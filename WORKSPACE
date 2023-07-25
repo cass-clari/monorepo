@@ -14,6 +14,12 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
 )
 
+#http_archive(
+#    name = "com_google_absl",
+#    strip_prefix = "abseil-cpp-273292d1cfc0a94a65082ee350509af1d113344d",
+#    urls = ["https://github.com/abseil/abseil-cpp/archive/273292d1cfc0a94a65082ee350509af1d113344d.zip"],
+#)
+
 load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
 
 rules_jvm_external_deps()
@@ -33,6 +39,15 @@ http_archive(
 
 load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
 
+grpc_java_repositories()
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "PROTOBUF_MAVEN_ARTIFACTS")
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
+
+#load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
+
 maven_install(
     artifacts = [
         "org.springframework.boot:spring-boot-starter:3.1.1",
@@ -45,7 +60,7 @@ maven_install(
         "org.testng:testng:7.8.0",
         "org.slf4j:slf4j-simple:jar:2.0.7",
         "com.google.protobuf:protobuf-java:3.23.4",
-    ] + IO_GRPC_GRPC_JAVA_ARTIFACTS,
+    ] + IO_GRPC_GRPC_JAVA_ARTIFACTS + PROTOBUF_MAVEN_ARTIFACTS,
     #fail_if_repin_required = False,
     #maven_install_json = "//:maven_install.json",
     generate_compat_repositories = True,
@@ -54,21 +69,10 @@ maven_install(
         "https://repo1.maven.org/maven2",
         "https://repo.maven.apache.org/maven2/",
     ],
-    #strict_visibility = True,
+    strict_visibility = True,
 )
 
 ## Protobuffs
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-#maven_install(
-#    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
-#    generate_compat_repositories = True,
-#    override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
-#    repositories = [
-#        "https://repo.maven.apache.org/maven2/",
-#    ],
-#)
 
 http_archive(
     name = "rules_proto_grpc",

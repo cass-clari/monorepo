@@ -1,4 +1,4 @@
-package service.grpc;
+package service.server;
 
 import io.grpc.stub.StreamObserver;
 import service.protos.LoginResponse;

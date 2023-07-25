@@ -1,0 +1,12 @@
+load("@rules_java//java:defs.bzl", "java_test")
+
+java_test(
+    name = "server",
+    size = "small",
+    srcs = ["TestServer.java"],
+    test_class = "service.server.TestServer",
+    deps = [
+        "//third_party:junit4",
+        "//user-service/src/main/java/service/server",
+    ],
+)

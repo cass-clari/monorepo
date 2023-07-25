@@ -3,7 +3,6 @@ package service.server;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
@@ -16,12 +15,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-//@Import(UserServiceUnitTestConfiguration.class)
 @ContextConfiguration(classes = UserServiceUnitTestConfiguration.class)
 public class TestServer {
 
     @Autowired
-    private UserService myService;
+    private UserService myService; // = new UserService();
 
     @Test
     public void testLoginResponse() throws Exception {

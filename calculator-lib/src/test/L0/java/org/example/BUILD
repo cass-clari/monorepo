@@ -21,7 +21,7 @@ java_test(
         "test_report",
         "-usedefaultlisteners",
         "false",
-        "calculator-lib/src/test/java/org/example/testNG.yaml",
+        "calculator-lib/src/test/L0/java/org/example/testNG.yaml",
     ],
     data = ["testNG.yaml"],
     main_class = "org.testng.TestNG",

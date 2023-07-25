@@ -14,7 +14,7 @@ java_test(
         "//third_party:junit4",
         "//third_party:spring-beans-core-context",
         "//third_party:spring-test",
-        "//user-service/src/main/java/service/protos",
+        #        "//user-service/src/main/java/service/protos",
         "//user-service/src/main/java/service/server",
         "//user-service/src/main/java/service/server:user_service_java_grpc",
     ],

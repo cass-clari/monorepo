@@ -1,4 +1,4 @@
-package test.java.org.example;
+package test.L0.java.org.example;
 
 import main.java.org.example.Divider;
 import org.junit.Test;

@@ -69,7 +69,7 @@ maven_install(
         "https://repo1.maven.org/maven2",
         "https://repo.maven.apache.org/maven2/",
     ],
-    strict_visibility = True,
+    #strict_visibility = True,
 )
 
 ## Protobuffs

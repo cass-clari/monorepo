@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option java_package = "protos.user";
-option java_outer_classname = "EmailOuter";
+//option java_outer_classname = "EmailOuter";
 
 package protos.user;
 

@@ -1,11 +1,13 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
-    name = "user_service_grpc",
+    name = "protos",
     srcs = [
         "user_service.proto",
     ],
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//user-service/src/main/java/service/server:__pkg__",
+    ],
     deps = [
         "//protos/user:user_proto",
     ],

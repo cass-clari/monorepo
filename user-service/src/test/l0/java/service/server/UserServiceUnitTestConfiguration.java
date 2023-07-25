@@ -11,4 +11,6 @@ public class UserServiceUnitTestConfiguration {
         return new UserService();
     }
 
+    //I was here
+
 }

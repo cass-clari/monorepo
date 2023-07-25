@@ -65,3 +65,41 @@ java_library(
         "@maven//:org_codehaus_mojo_animal_sniffer_annotations",
     ],
 )
+
+java_library(
+    name = "spring-test",
+    exports = [
+        "@maven//:org_springframework_spring_test",
+    ],
+)
+
+java_library(
+    name = "spring-beans-core-context",
+    exports = [
+        "@maven//:org_springframework_spring_beans",
+        "@maven//:org_springframework_spring_context",
+        "@maven//:org_springframework_spring_core",
+    ],
+)
+
+#java_library(
+#    name = "grpc-server-spring-boot-starter",
+#    exports = [
+#        "@maven//:net_devh_grpc_server_spring_boot_starter",
+#    ],
+#)
+#
+#java_library(
+#    name = "grpc-client-spring-boot-starter",
+#    exports = [
+#        "@maven//:net_devh_grpc_client_spring_boot_starter",
+#    ],
+#)
+
+java_library(
+    name = "grpc-testing",
+    testonly = True,
+    exports = [
+        "@maven//:io_grpc_grpc_testing",
+    ],
+)

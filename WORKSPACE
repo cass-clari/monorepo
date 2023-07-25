@@ -60,6 +60,11 @@ maven_install(
         "org.testng:testng:7.8.0",
         "org.slf4j:slf4j-simple:jar:2.0.7",
         "com.google.protobuf:protobuf-java:3.23.4",
+        "org.springframework:spring-test:6.0.11",
+        "org.springframework:spring-core:6.0.11",
+        "org.springframework:spring-context:6.0.11",
+        "org.springframework:spring-beans:6.0.11",
+        "io.grpc:grpc-testing:1.51.0",
     ] + IO_GRPC_GRPC_JAVA_ARTIFACTS + PROTOBUF_MAVEN_ARTIFACTS,
     #fail_if_repin_required = False,
     #maven_install_json = "//:maven_install.json",
@@ -98,51 +103,3 @@ load("@maven//:compat.bzl", "compat_repositories")
 compat_repositories()
 
 grpc_java_repositories()
-
-## protobuff rpc
-
-#load("//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
-
-#
-# Toolchains
-#
-
-#rules_proto_grpc_toolchains()
-
-#
-# Core
-#
-
-#rules_proto_grpc_repos()
-
-#load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-#
-#rules_proto_dependencies()
-#
-#rules_proto_toolchains()
-
-## Protobuf RPC
-
-#load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
-#
-#rules_proto_grpc_toolchains()
-#
-#rules_proto_grpc_repos()
-#
-#load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-#
-#rules_proto_dependencies()
-#
-#rules_proto_toolchains()
-#
-#load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
-#
-#rules_proto_grpc_java_repos()
-#
-#load("@rules_jvm_external//:defs.bzl", "maven_install")
-
-#load("@maven//:compat.bzl", "compat_repositories")
-#
-#compat_repositories()
-#
-#grpc_java_repositories()

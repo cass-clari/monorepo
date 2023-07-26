@@ -22,13 +22,13 @@ public class TestDivider {
   @Test(expected = RuntimeException.class)
   public void testDivideByZero2() throws Exception {
     Divider d = new Divider();
-    assertEquals(0, d.divide2(2, 0));
+    assertEquals(0, d.divideByZero(2, 0));
   }
 
   @Test
   public void testDivideByZero3() throws Exception {
     Divider d = new Divider();
-    assertEquals(2, d.divide2(2, 1));
+    assertEquals(2, d.divideByZero(2, 1));
   }
  
 }

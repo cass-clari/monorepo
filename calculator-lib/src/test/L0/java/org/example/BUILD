@@ -25,6 +25,9 @@ java_test(
     ],
     data = ["testNG.yaml"],
     main_class = "org.testng.TestNG",
+    tags = [
+        "L0",
+    ],
     use_testrunner = False,
     runtime_deps = [
         ":TestLib",

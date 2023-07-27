@@ -6,6 +6,9 @@ java_test(
     srcs = [
         "TestServerL0.java",
     ],
+    tags = [
+        "L0",
+    ],
     test_class = "service.server.TestServerL0",
     deps = [
         "//third_party:grpc",

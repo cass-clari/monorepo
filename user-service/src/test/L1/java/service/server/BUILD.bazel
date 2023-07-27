@@ -7,6 +7,9 @@ java_test(
         "TestServer.java",
         "UserServiceUnitTestConfiguration.java",
     ],
+    tags = [
+        "L1",
+    ],
     test_class = "service.server.TestServer",
     deps = [
         "//third_party:grpc",

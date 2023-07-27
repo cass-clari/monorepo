@@ -38,9 +38,9 @@ public class TestCalculator {
         assertEquals(10, c.divideTwoInts(60, 6));
     }
 
-//    @Test(expectedExceptions = RuntimeException.class)
-//    public void testS13() {
-//        Calculator c = new Calculator();
-//        assertEquals(10, c.divideTwoInts(60, 0));
-//    }
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testS13() {
+        Calculator c = new Calculator();
+        assertEquals(10, c.divideTwoInts(60, 0));
+    }
 }

@@ -1,7 +1,7 @@
 steps:
   - command:
       - "git diff --name-only $BUILDKITE_COMMIT..$BUILDKITE_PULL_REQUEST_BASE_BRANCH"
-      - "bazel coverage --combined_report=lcov --instrumentation_filter=\"-@com_google_protobuf,-@io_grpc_grpc_java,-.*\.test\.*\" `bazel query //... | grep test/L0`"
+      - "bazel coverage --combined_report=lcov --instrumentation_filter=\"-@com_google_protobuf,-@io_grpc_grpc_java,-.*\\test\\*\" `bazel query //... | grep test/L0`"
       - "codecov -F L0 -t d60cc17b-8753-4639-9d85-79dd58f645a1 -f bazel-out/_coverage/_coverage_report.dat"
       - "./buildkite_scripts/find_and_upload_test_xml_files.sh L0"
     label: "L0"

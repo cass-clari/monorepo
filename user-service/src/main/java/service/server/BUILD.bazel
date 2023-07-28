@@ -2,8 +2,10 @@ load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
 java_binary(
     name = "server",
-    srcs = ["UserService.java"],
-    main_class = "service.server.UserService",
+    srcs = glob([
+        "*.java",
+    ]),
+    main_class = "service.server.UserServiceServer",
     visibility = [
         "//user-service/src/test/L0/java/service/server:__pkg__",
         "//user-service/src/test/L1/java/service/server:__pkg__",
@@ -11,6 +13,8 @@ java_binary(
     deps = [
         ":user_service_java_grpc",
         "//third_party:grpc",
+        #        "//third_party:grpc-server-spring-boot-starter",
+        "//third_party:spring-beans-core-context",
     ],
 )
 

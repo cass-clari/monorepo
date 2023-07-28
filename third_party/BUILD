@@ -63,6 +63,7 @@ java_library(
         "@maven//:junit_junit",
         "@maven//:org_apache_tomcat_annotations_api",
         "@maven//:org_codehaus_mojo_animal_sniffer_annotations",
+        "@maven//:io_grpc_grpc_services",
     ],
 )
 
@@ -76,6 +77,9 @@ java_library(
 java_library(
     name = "spring-beans-core-context",
     exports = [
+        "@maven//:org_springframework_boot_spring_boot",
+        "@maven//:org_springframework_boot_spring_boot_autoconfigure",
+        "@maven//:org_springframework_boot_spring_boot_starter",
         "@maven//:org_springframework_spring_beans",
         "@maven//:org_springframework_spring_context",
         "@maven//:org_springframework_spring_core",
@@ -85,7 +89,12 @@ java_library(
 #java_library(
 #    name = "grpc-server-spring-boot-starter",
 #    exports = [
+#        "@maven//:net_devh_grpc_server_spring_boot_autoconfigure",
 #        "@maven//:net_devh_grpc_server_spring_boot_starter",
+#        "@maven//:org_springframework_boot_spring_boot",
+#        "@maven//:org_springframework_boot_spring_boot_autoconfigure",
+#        "@maven//:org_springframework_boot_spring_boot_starter",
+#        "@maven//:org_springframework_spring_context",
 #    ],
 #)
 #

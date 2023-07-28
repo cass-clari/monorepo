@@ -7,10 +7,9 @@ import org.springframework.context.annotation.Configuration;
 public class UserServiceUnitTestConfiguration {
 
     @Bean
-    UserService myService() {
-        return new UserService();
-    }
+    UserDAL myUserDAL() { return new UserDALStub(); }
 
-    //I was here
+    @Bean
+    public UserService userService() { return new UserService(); }
 
 }

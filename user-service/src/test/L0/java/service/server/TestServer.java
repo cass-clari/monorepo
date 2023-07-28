@@ -1,20 +1,27 @@
 package service.server;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
 import io.grpc.testing.StreamRecorder;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
-public class TestServerL0 {
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = UserServiceUnitTestConfiguration.class)
+public class TestServer {
 
-    private UserService myService = new UserService();
+    @Autowired
+    private UserService userService;
 
     @Test
     public void testLoginResponse() throws Exception {
@@ -23,7 +30,7 @@ public class TestServerL0 {
                 .setPwd("cass")
                 .build();
         StreamRecorder<LoginResponse> responseObserver = StreamRecorder.create();
-        myService.login(request, responseObserver);
+        userService.login(request, responseObserver);
         if (!responseObserver.awaitCompletion(5, TimeUnit.SECONDS)) {
             fail("The call did not terminate in time");
         }
@@ -40,12 +47,7 @@ public class TestServerL0 {
         u.setFirstName("cass").setLastName("casslast").setEmailAddress(e);
 
         assertEquals(LoginResponse.newBuilder()
-                .setMessage("Hello there!").setUser(u.build())
+                .setMessage("Hello there!").setUser(u.build()).setStatus(200)
                 .build(), response);
-    }
-
-    @Test
-    public void simpleTest() {
-        assertEquals("cass", "cass");
     }
 }

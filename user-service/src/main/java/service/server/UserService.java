@@ -1,6 +1,9 @@
 package service.server;
 
+import com.google.protobuf.Message;
 import io.grpc.stub.StreamObserver;
+import protos.user.EmailAddressOuterClass.EmailAddress;
+import protos.user.UserOuterClass.User;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
 import service.protos.UserServiceGrpc;
@@ -64,8 +67,19 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
     @Override
     public void login(LoginUser req, StreamObserver<LoginResponse> responseObserver) {
         System.out.println("Received request: " + req.toString());
-        LoginResponse reply = LoginResponse.newBuilder().setMessage("Hello there!").build();
+        User u = verifyUser(req.getUsername(), req.getPwd());
+        LoginResponse reply = LoginResponse.newBuilder().setMessage("Hello there!").setUser(u).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
+    }
+
+    private User verifyUser(String username, String password) {
+        User.Builder u = User.newBuilder();
+        u.setFirstName(username).setLastName(username+"last");
+        EmailAddress.Builder email = EmailAddress.newBuilder();
+        email.setEmail(username + "@" + u.getLastName() + ".net");
+        u.setEmailAddress(email);
+
+        return u.build();
     }
 }

@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_test")
 
 java_test(
-    name = "server",
+    name = "tests",
     size = "small",
     srcs = [
         "TestServerL1.java",

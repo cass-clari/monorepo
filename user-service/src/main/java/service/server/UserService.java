@@ -20,4 +20,8 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
+
+    public UserDAL getMyUserDAL() {
+        return myUserDAL;
+    }
 }

@@ -15,4 +15,9 @@ public class UserDALStub implements UserDAL {
 
         return u.build();
     }
+
+    @Override
+    public void setConnectionProvider(DBConnectionProvider connectionProvider) {
+
+    }
 }

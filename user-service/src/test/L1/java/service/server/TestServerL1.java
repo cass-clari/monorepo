@@ -1,11 +1,15 @@
 package service.server;
 
 import io.grpc.testing.StreamRecorder;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.testcontainers.containers.PostgreSQLContainer;
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
 import service.protos.LoginResponse;
@@ -20,8 +24,33 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = UserServiceConfiguration.class)
 public class TestServerL1 {
 
+    static PostgreSQLContainer<?> postgres;
+
     @Autowired
     private UserService userService;
+
+    @BeforeClass
+    public static void beforeAll() {
+        System.out.println("Opening db");
+         postgres = new PostgreSQLContainer<>("postgres:14-alpine");
+        postgres.start();
+    }
+//
+    @AfterClass
+    public static void afterAll() {
+        System.out.println("Closing db");
+        postgres.stop();
+    }
+
+    @Before
+    public void setUp() {
+        DBConnectionProvider connectionProvider = new DBConnectionProvider(
+                postgres.getJdbcUrl(),
+                postgres.getUsername(),
+                postgres.getPassword()
+        );
+        userService.getMyUserDAL().setConnectionProvider(connectionProvider);
+    }
 
     @Test
     public void testLoginResponse() throws Exception {

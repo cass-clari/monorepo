@@ -1,15 +1,15 @@
 package service.server;
 
+import io.grpc.testing.StreamRecorder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
-import io.grpc.testing.StreamRecorder;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = UserServiceConfiguration.class)
-public class TestServer {
+public class TestServerL1 {
 
     @Autowired
     private UserService userService;

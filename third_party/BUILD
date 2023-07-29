@@ -112,3 +112,19 @@ java_library(
         "@maven//:io_grpc_grpc_testing",
     ],
 )
+
+java_library(
+    name = "postgres-testcontainer",
+    testonly = True,
+    exports = [
+        "@maven//:org_testcontainers_postgresql",
+        "@maven//:org_testcontainers_testcontainers",
+    ],
+)
+
+java_library(
+    name = "postgres",
+    exports = [
+        "@maven//:org_postgresql_postgresql",
+    ],
+)

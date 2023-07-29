@@ -10,6 +10,7 @@ import "protos/user/user.proto";
 service UserService {
   // Logs in a user
   rpc Login (LoginUser) returns (LoginResponse) {}
+  rpc GetAllUsers (LoginUser) returns (AllUsers) {}
 }
 
 // The request message containing the user's name.
@@ -23,4 +24,8 @@ message LoginResponse {
   string message = 1;
   int32 status = 2;
   .protos.user.User user = 3;
+}
+
+message AllUsers {
+  repeated .protos.user.User user = 1;
 }

@@ -13,7 +13,7 @@ java_binary(
     deps = [
         ":user_service_java_grpc",
         "//third_party:grpc",
-        #        "//third_party:grpc-server-spring-boot-starter",
+        "//third_party:postgres",
         "//third_party:spring-beans-core-context",
     ],
 )

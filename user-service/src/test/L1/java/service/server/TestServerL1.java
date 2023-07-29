@@ -52,11 +52,6 @@ public class TestServerL1 {
 
     @After
     public void teardown() {
-        DBConnectionProvider connectionProvider = new DBConnectionProvider(
-                postgres.getJdbcUrl(),
-                postgres.getUsername(),
-                postgres.getPassword()
-        );
         userService.getMyUserDAL().dropUsers();
     }
 

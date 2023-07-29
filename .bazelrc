@@ -11,3 +11,5 @@ build --remote_header=x-buildbuddy-api-key=hn9CMMIBmyeRa6k6JxC3
 build --workspace_status_command=$(pwd)/workspace_status.sh
 test --build_metadata=ROLE=CI
 
+coverage --noslim_profile --experimental_profile_include_target_label --experimental_profile_include_primary_output
+

@@ -1,10 +1,7 @@
 package service.server;
 
 import io.grpc.testing.StreamRecorder;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -52,8 +49,46 @@ public class TestServerL1 {
         userService.getMyUserDAL().setConnectionProvider(connectionProvider);
     }
 
+    @After
+    public void teardown() {
+        DBConnectionProvider connectionProvider = new DBConnectionProvider(
+                postgres.getJdbcUrl(),
+                postgres.getUsername(),
+                postgres.getPassword()
+        );
+        userService.getMyUserDAL().dropUsers();
+    }
+
     @Test
     public void testLoginResponse() throws Exception {
+        LoginUser request = LoginUser.newBuilder()
+                .setUsername("cass")
+                .setPwd("cass")
+                .build();
+        StreamRecorder<LoginResponse> responseObserver = StreamRecorder.create();
+        userService.login(request, responseObserver);
+        if (!responseObserver.awaitCompletion(5, TimeUnit.SECONDS)) {
+            fail("The call did not terminate in time");
+        }
+        assertNull(responseObserver.getError());
+        List<LoginResponse> results = responseObserver.getValues();
+        assertEquals(1, results.size());
+        LoginResponse response = results.get(0);
+
+
+        EmailAddressOuterClass.EmailAddress.Builder e = EmailAddressOuterClass.EmailAddress.newBuilder();
+        e.setEmail("cass@casslast.net");
+
+        UserOuterClass.User.Builder u = UserOuterClass.User.newBuilder();
+        u.setFirstName("cass").setLastName("casslast").setEmailAddress(e);
+
+        assertEquals(LoginResponse.newBuilder()
+                .setMessage("Hello there!").setUser(u.build()).setStatus(200)
+                .build(), response);
+    }
+
+    @Test
+    public void testCreateUser() throws Exception {
         LoginUser request = LoginUser.newBuilder()
                 .setUsername("cass")
                 .setPwd("cass")

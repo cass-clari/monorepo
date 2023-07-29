@@ -23,6 +23,18 @@ public class UserDALImpl implements UserDAL {
         createUsersTableIfNotExists();
     }
 
+    @Override
+    public void dropUsers() {
+        try (Connection conn = this.connectionProvider.getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement(
+                    "drop table if exists users"
+            );
+            pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void createUser(UserOuterClass.User user) {
         try (Connection conn = this.connectionProvider.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(
@@ -87,7 +99,7 @@ public class UserDALImpl implements UserDAL {
                                 create table if not exists users (
                                     id serial not null,
                                     username varchar not null,
-                                    pwd varchar not null,
+                                    password varchar not null,
                                     firstname varchar not null,
                                     lastname varchar not null,
                                     email_address varchar not null,
@@ -103,13 +115,23 @@ public class UserDALImpl implements UserDAL {
 
     @Override
     public UserOuterClass.User validateUser(String username, String password) {
-        System.out.println("Inside real IMPL");
-        UserOuterClass.User.Builder u = UserOuterClass.User.newBuilder();
-        u.setFirstName(username).setLastName(username+"last");
-        EmailAddressOuterClass.EmailAddress.Builder email = EmailAddressOuterClass.EmailAddress.newBuilder();
-        email.setEmail(username + "@" + u.getLastName() + ".net");
-        u.setEmailAddress(email);
 
-        return u.build();
+        System.out.println("Inside real IMPL");
+
+        UserOuterClass.User user = getUserByUserName(username);
+
+        if (user == null) {
+            UserOuterClass.User.Builder u = UserOuterClass.User.newBuilder();
+            u.setFirstName(username).setLastName(username + "last");
+            EmailAddressOuterClass.EmailAddress.Builder email = EmailAddressOuterClass.EmailAddress.newBuilder();
+            email.setEmail(username + "@" + u.getLastName() + ".net");
+            u.setEmailAddress(email);
+
+            createUser(u.build());
+
+            return u.build();
+        } else {
+            return null;
+        }
     }
 }

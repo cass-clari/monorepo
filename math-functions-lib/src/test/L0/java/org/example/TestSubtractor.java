@@ -16,6 +16,7 @@ public class TestSubtractor {
     Subtractor subtractor = new Subtractor();
     assertEquals(1, subtractor.subtract(2, 1));
     assertEquals(9, subtractor.subtract(18, 9));
+    assertEquals(0, subtractor.subtract(2, 2));
   }
  
 }

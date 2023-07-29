@@ -15,6 +15,12 @@ public class TestCalculator {
     }
 
     @Test
+    public void test5() {
+        Calculator c = new Calculator();
+        assertEquals(5, c.addTwoInts(3, 2));
+    }
+
+    @Test
     public void test100() {
         Calculator c = new Calculator();
         assertEquals(100, c.addTwoInts(50, 50));

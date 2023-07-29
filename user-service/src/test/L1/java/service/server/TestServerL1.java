@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
+import service.protos.AllUsers;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
 
@@ -113,5 +114,17 @@ public class TestServerL1 {
         assertEquals(LoginResponse.newBuilder()
                 .setMessage("Hello there!").setUser(u.build()).setStatus(200)
                 .build(), response);
+
+        //get all users
+        StreamRecorder<AllUsers> responseObserver2 = StreamRecorder.create();
+        userService.getAllUsers(request, responseObserver2);
+        if (!responseObserver2.awaitCompletion(5, TimeUnit.SECONDS)) {
+            fail("The call did not terminate in time");
+        }
+        assertNull(responseObserver2.getError());
+        List<AllUsers> results2 = responseObserver2.getValues();
+        System.out.println("All users: " + results2.get(0).toString());
+        assertEquals(1, results2.size());
+        assertEquals(1, results2.get(0).getUserCount());
     }
 }

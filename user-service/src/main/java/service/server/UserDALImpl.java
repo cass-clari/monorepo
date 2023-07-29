@@ -2,6 +2,7 @@ package service.server;
 
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
+import service.protos.AllUsers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,12 +36,21 @@ public class UserDALImpl implements UserDAL {
         }
     }
 
+
+    @Override
+    public AllUsers getAllUsers(UserOuterClass.User u) {
+        List<UserOuterClass.User> users = getAllUsers();
+        AllUsers.Builder allUsers = AllUsers.newBuilder();
+        allUsers.addAllUser(users);
+        return allUsers.build();
+    }
+
     public void createUser(UserOuterClass.User user) {
         try (Connection conn = this.connectionProvider.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(
                     "insert into users(username,password,firstname,lastname,email_address) values(?,?,?,?,?)"
             );
-            pstmt.setString(1, user.getFirstName() + "_" + user.getLastName());
+            pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getFirstName());
             pstmt.setString(3, user.getFirstName());
             pstmt.setString(4, user.getLastName());
@@ -51,7 +61,7 @@ public class UserDALImpl implements UserDAL {
         }
     }
 
-    public List<UserOuterClass.User> getAllCustomers() {
+    public List<UserOuterClass.User> getAllUsers() {
         List<UserOuterClass.User> users = new ArrayList<>();
 
         try (Connection conn = this.connectionProvider.getConnection()) {
@@ -63,7 +73,12 @@ public class UserDALImpl implements UserDAL {
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
                 String email = rs.getString("email_address");
-                users.add(UserOuterClass.User.newBuilder().setFirstName(firstname).setLastName(lastname).build());
+                users.add(
+                        UserOuterClass.User.newBuilder()
+                                .setFirstName(firstname)
+                                .setLastName(lastname)
+                                .setEmailAddress(EmailAddressOuterClass.EmailAddress.newBuilder().setEmail(email))
+                                .build());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

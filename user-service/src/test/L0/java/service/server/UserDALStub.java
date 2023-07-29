@@ -2,6 +2,7 @@ package service.server;
 
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
+import service.protos.AllUsers;
 
 public class UserDALStub implements UserDAL {
     @Override
@@ -24,5 +25,10 @@ public class UserDALStub implements UserDAL {
     @Override
     public void dropUsers() {
 
+    }
+
+    @Override
+    public AllUsers getAllUsers(UserOuterClass.User u) {
+        return null;
     }
 }

@@ -87,7 +87,7 @@ public class UserDALImpl implements UserDAL {
     }
 
     public UserOuterClass.User getUserByUserName(String username) {
-
+        //let's see
         UserOuterClass.User user = null;
 
         try (Connection conn = this.connectionProvider.getConnection()) {

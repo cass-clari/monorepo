@@ -20,7 +20,7 @@ public class UserServiceServer implements Runnable{
     @Autowired
     private UserService userService;
 
-    private void start() throws IOException {
+    private void startServer() throws IOException {
         /* The port on which the server should run */
         int port = 8080;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
@@ -63,7 +63,7 @@ public class UserServiceServer implements Runnable{
         ConfigurableApplicationContext context = SpringApplication.run(UserServiceServer.class, args);
 
         UserServiceServer server = context.getBean(UserServiceServer.class);
-        server.start();
+        server.startServer();
         server.blockUntilShutdown();
     }
 

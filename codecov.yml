@@ -24,4 +24,4 @@ flag_management:
         target: auto
         threshold: 1%
       - type: patch
-        target: auto
+        target: 0%

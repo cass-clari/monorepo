@@ -4,6 +4,7 @@ import io.grpc.testing.StreamRecorder;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = UserServiceConfiguration.class)
+@ActiveProfiles("L1")
 public class TestServerL1 {
 
     static PostgreSQLContainer<?> postgres;

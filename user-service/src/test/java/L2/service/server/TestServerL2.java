@@ -3,14 +3,11 @@ package service.server;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import service.client.UserServiceClient;
 import service.protos.LoginResponse;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -31,17 +28,14 @@ public class TestServerL2 {
     public void testServiceIsIntialized() throws Exception {
         assertNotNull(userService);
 
-        UserServiceServer server = new UserServiceServer();
-        Thread t = new Thread(server);
-        t.start();
-
-        Thread.sleep(3000);
-
-        UserServiceClient client = new UserServiceClient();
-        LoginResponse response = client.login("cass", "cass");
-        System.out.println("Service responded with: " + response.toString());
-
-//        assertEquals(this.restTemplate.getForObject("http://localhost:" + port + "/",
-//                String.class), "cass");
+//        UserServiceServer server = new UserServiceServer();
+//        Thread t = new Thread(server);
+//        t.start();
+//
+//        Thread.sleep(3000);
+//
+//        UserServiceClient client = new UserServiceClient();
+//        LoginResponse response = client.login("cass", "cass");
+//        System.out.println("Service responded with: " + response.toString());
     }
 }

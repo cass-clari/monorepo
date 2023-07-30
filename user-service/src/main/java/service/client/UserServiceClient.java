@@ -1,11 +1,9 @@
 package service.client;
 
 import io.grpc.*;
-import service.protos.UserServiceGrpc;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
-
-import java.util.concurrent.TimeUnit;
+import service.protos.UserServiceGrpc;
 
 public class UserServiceClient {
     private final UserServiceGrpc.UserServiceBlockingStub blockingStub;

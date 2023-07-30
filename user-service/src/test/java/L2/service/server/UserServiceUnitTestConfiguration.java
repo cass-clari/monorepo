@@ -1,5 +1,6 @@
 package service.server;
 
+import common.UserDALStub;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

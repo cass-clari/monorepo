@@ -7,8 +7,30 @@ java_binary(
     ]),
     main_class = "service.server.UserServiceServer",
     visibility = [
-        "//user-service/src/test/L0/java/service/server:__pkg__",
-        "//user-service/src/test/L1/java/service/server:__pkg__",
+        "//user-service/src/test/java/L0/service/server:__pkg__",
+        "//user-service/src/test/java/L1/service/server:__pkg__",
+        "//user-service/src/test/java/L2/service/server:__pkg__",
+        "//user-service/src/test/java/common:__pkg__",
+    ],
+    deps = [
+        ":server-lib",
+        ":user_service_java_grpc",
+        "//third_party:grpc",
+        "//third_party:postgres",
+        "//third_party:spring-beans-core-context",
+    ],
+)
+
+java_library(
+    name = "server-lib",
+    srcs = glob([
+        "*.java",
+    ]),
+    visibility = [
+        "//user-service/src/test/java/L0/service/server:__pkg__",
+        "//user-service/src/test/java/L1/service/server:__pkg__",
+        "//user-service/src/test/java/L2/service/server:__pkg__",
+        "//user-service/src/test/java/common:__pkg__",
     ],
     deps = [
         ":user_service_java_grpc",
@@ -27,7 +49,9 @@ java_grpc_library(
     ],
     visibility = [
         "//user-service/src/main/java/service/client:__pkg__",
-        "//user-service/src/test/L0/java/service/server:__pkg__",
-        "//user-service/src/test/L1/java/service/server:__pkg__",
+        "//user-service/src/test/java/L0/service/server:__pkg__",
+        "//user-service/src/test/java/L1/service/server:__pkg__",
+        "//user-service/src/test/java/L2/service/server:__pkg__",
+        "//user-service/src/test/java/common:__pkg__",
     ],
 )

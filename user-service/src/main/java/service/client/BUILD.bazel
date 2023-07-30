@@ -1,9 +1,6 @@
-load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
-
-java_binary(
+java_library(
     name = "client",
     srcs = ["UserServiceClient.java"],
-    main_class = "service.client.UserServiceClient",
     visibility = ["//visibility:public"],
     deps = [
         "//third_party:grpc",

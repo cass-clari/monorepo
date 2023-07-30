@@ -1,0 +1,22 @@
+java_library(
+    name = "common",
+    testonly = True,
+    srcs = [
+        "UserDALStub.java",
+        "UserServiceUnitTestConfiguration.java",
+    ],
+    visibility = [
+        "//user-service/src/test/java/L0/service/server:__pkg__",
+        "//user-service/src/test/java/L1/service/server:__pkg__",
+        "//user-service/src/test/java/L2/service/server:__pkg__",
+    ],
+    deps = [
+        "//third_party:grpc",
+        "//third_party:grpc-testing",
+        "//third_party:junit4",
+        "//third_party:spring-beans-core-context",
+        "//third_party:spring-test",
+        "//user-service/src/main/java/service/server",
+        "//user-service/src/main/java/service/server:user_service_java_grpc",
+    ],
+)

@@ -10,6 +10,7 @@ import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
 import service.protos.LoginResponse;
 import service.protos.LoginUser;
+import common.UserServiceUnitTestConfiguration;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

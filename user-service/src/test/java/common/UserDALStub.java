@@ -1,8 +1,10 @@
-package service.server;
+package common;
 
 import protos.user.EmailAddressOuterClass;
 import protos.user.UserOuterClass;
 import service.protos.AllUsers;
+import service.server.DBConnectionProvider;
+import service.server.UserDAL;
 
 public class UserDALStub implements UserDAL {
     @Override
@@ -17,7 +19,6 @@ public class UserDALStub implements UserDAL {
         return u.build();
     }
 
-    @Override
     public void setConnectionProvider(DBConnectionProvider connectionProvider) {
 
     }

@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
-public class UserServiceServer {
-
+public class UserServiceServer implements Runnable{
 
     private Server server;
 
@@ -66,5 +65,16 @@ public class UserServiceServer {
         UserServiceServer server = context.getBean(UserServiceServer.class);
         server.start();
         server.blockUntilShutdown();
+    }
+
+    @Override
+    public void run() {
+        try {
+            main(new String[]{});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

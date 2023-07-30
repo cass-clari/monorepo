@@ -70,6 +70,8 @@ java_library(
 java_library(
     name = "spring-test",
     exports = [
+        "@maven//:org_springframework_boot_spring_boot_starter_test",
+        "@maven//:org_springframework_boot_spring_boot_test",
         "@maven//:org_springframework_spring_test",
     ],
 )

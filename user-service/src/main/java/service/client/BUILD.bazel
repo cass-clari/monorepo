@@ -1,4 +1,4 @@
-load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+#load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
 java_binary(
     name = "client",

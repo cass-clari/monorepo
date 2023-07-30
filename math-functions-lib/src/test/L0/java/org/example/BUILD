@@ -10,8 +10,8 @@ java_test(
     ],
     test_class = "test.L0.java.org.example.TestAdder",
     deps = [
+        "//math-functions-lib/src/main/java/org/example",
         "//third_party:junit4",
-        "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )
 
@@ -24,8 +24,8 @@ java_test(
     ],
     test_class = "test.L0.java.org.example.TestSubtractor",
     deps = [
+        "//math-functions-lib/src/main/java/org/example",
         "//third_party:junit4",
-        "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )
 
@@ -38,8 +38,8 @@ java_test(
     ],
     test_class = "test.L0.java.org.example.TestMultiplier",
     deps = [
+        "//math-functions-lib/src/main/java/org/example",
         "//third_party:junit4",
-        "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )
 
@@ -52,7 +52,7 @@ java_test(
     ],
     test_class = "test.L0.java.org.example.TestDivider",
     deps = [
+        "//math-functions-lib/src/main/java/org/example",
         "//third_party:junit4",
-        "@monorepo//math-functions-lib/src/main/java/org/example",
     ],
 )

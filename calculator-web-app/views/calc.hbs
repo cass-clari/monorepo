@@ -1,0 +1,18 @@
+<div class="landing-container">
+    <div class="landing__hero">
+        <div>
+            <h3>Calc</h3>
+            <form action="/calc">
+              <input type="text" id="dig1" name="dig1" value="{{dig1}}">
+              <select name="op" id="op">
+                  <option value="add">+</option>
+                  <option value="subtract">-</option>
+                  <option value="multiply">*</option>
+                  <option value="divide">/</option>
+              </select>
+              <input type="text" id="dig2" name="dig2" value="{{dig2}}">&nbsp;<input type="submit" value="=">&nbsp;
+              <span id="answer">{{result}}</span>
+            </form>
+        </div>
+    </div>
+</div>

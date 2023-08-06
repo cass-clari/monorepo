@@ -146,7 +146,7 @@ public class UserDALImpl implements UserDAL {
 
             return u.build();
         } else {
-            return null;
+            return user;
         }
     }
 }

@@ -1,7 +1,7 @@
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
 java_binary(
-    name = "server",
+    name = "old-server",
     srcs = glob([
         "*.java",
     ]),
@@ -18,6 +18,39 @@ java_binary(
         "//third_party:grpc",
         "//third_party:postgres",
         "//third_party:spring-beans-core-context",
+    ],
+)
+
+java_binary(
+    name = "server",
+    srcs = glob([
+        "*.java",
+    ]),
+    main_class = "service.server.UserServiceServer",
+    resource_strip_prefix = "user-service/src/main/java/service/server",
+    resources = [
+        "//user-service/src/main/java/service/server:resources",
+    ],
+    visibility = [
+        "//user-service/src/test/java/L0/service/server:__pkg__",
+        "//user-service/src/test/java/L1/service/server:__pkg__",
+        "//user-service/src/test/java/L2/service/server:__pkg__",
+        "//user-service/src/test/java/common:__pkg__",
+    ],
+    deps = [
+        ":server-lib",
+        ":user_service_java_grpc",
+        "//third_party:grpc",
+        "//third_party:postgres",
+        "//third_party:snake-yaml",
+        "//third_party:spring-beans-core-context",
+    ],
+)
+
+filegroup(
+    name = "resources",
+    srcs = [
+        "application.yml",
     ],
 )
 

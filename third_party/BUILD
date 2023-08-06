@@ -130,3 +130,10 @@ java_library(
         "@maven//:org_postgresql_postgresql",
     ],
 )
+
+java_library(
+    name = "snake-yaml",
+    exports = [
+        "@maven//:org_yaml_snakeyaml",
+    ],
+)

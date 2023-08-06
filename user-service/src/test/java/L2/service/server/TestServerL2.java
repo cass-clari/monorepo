@@ -1,8 +1,11 @@
 package service.server;
 
+import common.UserServiceUnitTestConfiguration;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -12,7 +15,7 @@ import service.protos.LoginResponse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = UserServiceUnitTestConfiguration.class)
+@ContextConfiguration(classes = UserServiceConfiguration.class)
 @ActiveProfiles("L2")
 public class TestServerL2 {
 
@@ -20,6 +23,14 @@ public class TestServerL2 {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ConfigurableEnvironment env;
+
+    @Before
+    public void setUp() {
+        env.setActiveProfiles("L2");
+    }
 
     @Test
     public void testServiceIsIntialized() throws Exception {

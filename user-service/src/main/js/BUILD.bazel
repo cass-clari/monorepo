@@ -1,0 +1,30 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("//:defs.bzl", "ts_proto_library")
+
+ts_proto_library(
+    name = "user-service",
+    proto = "//user-service/src/main/protos",
+)
+
+ts_project(
+    name = "ts",
+    srcs = [
+        "client.ts",
+        ":user-service",
+    ],
+    declaration = True,
+    tsconfig = "//:tsconfig",
+    deps = [
+        "//:node_modules/@grpc/grpc-js",
+        "//:node_modules/@types/node",
+    ],
+)
+
+js_binary(
+    name = "client",
+    data = [":ts"],
+    entry_point = "client.js",
+)

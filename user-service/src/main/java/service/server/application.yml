@@ -1,0 +1,38 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+
+logging:
+  level:
+    org.springframework: INFO
+
+url: "jdbc:postgresql://localhost:5432/ccostello"
+username: "ccostello"
+password: "ccostello"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: L1
+
+logging:
+  level:
+    org.springframework: INFO
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: L2
+
+logging:
+  level:
+    org.springframework: INFO
+
+url: "jdbc:postgresql://localhost:5432/ccostello"
+username: "ccostello"
+password: "ccostello"

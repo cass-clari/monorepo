@@ -5,6 +5,7 @@ import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
 import io.grpc.protobuf.services.ProtoReflectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,10 +18,24 @@ public class UserServiceServer implements Runnable{
 
     private Server server;
 
+    @Value("${url:defaultUrl}")
+    private String url;
+    @Value("${username:defaultUsername}")
+    private String username;
+    @Value("${password:defaultPassword}")
+    private String password;
+
     @Autowired
     private UserService userService;
 
     private void startServer() throws IOException {
+        DBConnectionProvider connectionProvider = new DBConnectionProvider(
+                url,
+                username,
+                password
+        );
+        userService.getMyUserDAL().setConnectionProvider(connectionProvider);
+
         /* The port on which the server should run */
         int port = 8080;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
@@ -61,6 +76,8 @@ public class UserServiceServer implements Runnable{
 
     public static void main(String[] args) throws IOException, InterruptedException {
         ConfigurableApplicationContext context = SpringApplication.run(UserServiceServer.class, args);
+
+        System.out.println(context.getEnvironment());
 
         UserServiceServer server = context.getBean(UserServiceServer.class);
         server.startServer();

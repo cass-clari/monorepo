@@ -9,7 +9,7 @@ import service.server.UserDAL;
 public class UserDALStub implements UserDAL {
     @Override
     public UserOuterClass.User validateUser(String username, String password) {
-        System.out.println("Inside STUB IMPL");
+        System.out.println("Inside STUB IMPL!!");
         UserOuterClass.User.Builder u = UserOuterClass.User.newBuilder();
         u.setFirstName(username).setLastName(username + "last");
         EmailAddressOuterClass.EmailAddress.Builder email = EmailAddressOuterClass.EmailAddress.newBuilder();

@@ -7,7 +7,7 @@ import service.server.UserDAL;
 import service.server.UserService;
 
 @Configuration
-@Profile({"L0","L2"})
+@Profile({"L0"})
 public class UserServiceUnitTestConfiguration {
 
     @Bean

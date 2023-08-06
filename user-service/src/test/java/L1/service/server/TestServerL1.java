@@ -4,6 +4,7 @@ import io.grpc.testing.StreamRecorder;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,6 +30,9 @@ public class TestServerL1 {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ConfigurableEnvironment env;
+
     @BeforeClass
     public static void beforeAll() {
         System.out.println("Opening db");
@@ -44,6 +48,7 @@ public class TestServerL1 {
 
     @Before
     public void setUp() {
+        env.setActiveProfiles("L1");
         DBConnectionProvider connectionProvider = new DBConnectionProvider(
                 postgres.getJdbcUrl(),
                 postgres.getUsername(),

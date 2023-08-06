@@ -5,7 +5,7 @@ java_test(
     size = "small",
     srcs = [
         "TestServerL2.java",
-        "UserServiceUnitTestConfiguration.java",
+        #        "UserServiceUnitTestConfiguration.java",
     ],
     tags = [
         "L2",

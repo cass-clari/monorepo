@@ -1,4 +1,5 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
 
 proto_library(
     name = "user_proto",
@@ -11,4 +12,12 @@ proto_library(
     name = "email_address_proto",
     srcs = ["email_address.proto"],
     visibility = ["//visibility:public"],
+)
+
+doc_markdown_compile(
+    name = "user_doc",
+    protos = [
+        ":email_address_proto",
+        ":user_proto",
+    ],
 )

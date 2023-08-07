@@ -2,16 +2,16 @@ import { UserService, LoginUser, LoginResponse } from './user-service';
 import * as grpc from '@grpc/grpc-js';
 import * as pbjs from 'protobufjs';
 
-const WeatherClient = grpc.makeGenericClientConstructor({}, 'Weather');
+const UserServiceClient = grpc.makeGenericClientConstructor({}, 'UserService');
 
-const client = new WeatherClient(
-    '0.0.0.0:1334',
+const client = new UserServiceClient(
+    '127.0.0.1:8080',
     grpc.credentials.createInsecure()
 );
 
 const transport: pbjs.RPCImpl = function (method, data, callback) {
     client.makeUnaryRequest(
-        `/Weather/${method.name}`,
+        `/UserService/${method.name}`,
         (arg) => Buffer.from(arg),
         (arg) => arg,
         data,
@@ -19,18 +19,13 @@ const transport: pbjs.RPCImpl = function (method, data, callback) {
     );
 };
 
-const weather = Weather.create(transport, false, false);
+const userService = UserService.create(transport, false, false);
 
-weather
-    .getForecast(Forecast.Request.create({ cityCode: 1, countryCode: 0 }))
-    .then((forecast) => {
-        console.log(`Forecast`);
+userService
+    .login(LoginUser.create({ username: 'cass', pwd: 'cass' }))
+    .then((loginResponse) => {
+        console.log(`LoginResponse`);
         console.log(
-            `Temperature ${forecast.temperature?.low}°C LOW / ${forecast.temperature?.high}°C HIGH`
-        );
-        console.log(
-            `Wind direction is ${Wind.Direction[forecast.wind!.direction!]} at ${
-                forecast.wind?.speed
-            } km/h`
+            `User: ${JSON.stringify(loginResponse)}`
         );
     });

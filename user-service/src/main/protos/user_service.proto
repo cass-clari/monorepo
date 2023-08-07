@@ -15,12 +15,14 @@ service UserService {
 
 // The request message containing the user's name.
 message LoginUser {
+  // User login
   string username = 1;
   string pwd = 2;
 }
 
-// The response message containing the greetings
+// The response message containing logged-in user's details
 message LoginResponse {
+  // Login response
   string message = 1;
   int32 status = 2;
   .protos.user.User user = 3;

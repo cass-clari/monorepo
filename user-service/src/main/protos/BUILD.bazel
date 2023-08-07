@@ -1,4 +1,6 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
+load("@rules_proto_grpc//doc:defs.bzl", "doc_html_compile")
 
 proto_library(
     name = "protos",
@@ -11,6 +13,24 @@ proto_library(
         "//user-service/src/test/l0/java/service/server:__pkg__",
     ],
     deps = [
+        "//protos/user:user_proto",
+    ],
+)
+
+doc_markdown_compile(
+    name = "user_service_doc",
+    protos = [
+        ":protos",
+        "//protos/user:email_address_proto",
+        "//protos/user:user_proto",
+    ],
+)
+
+doc_html_compile(
+    name = "user_service_doc_html",
+    protos = [
+        ":protos",
+        "//protos/user:email_address_proto",
         "//protos/user:user_proto",
     ],
 )

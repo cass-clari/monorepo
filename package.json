@@ -15,7 +15,7 @@
     "packageExtensions": {
       "protobufjs": {
         "dependencies": {
-          "semver": "^7.1.2",
+          "semver": "^7.5.2",
           "chalk": "^4.0.0",
           "glob": "^7.1.6",
           "jsdoc": "^3.6.3",

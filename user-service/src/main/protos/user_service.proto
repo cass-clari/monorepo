@@ -13,7 +13,7 @@ service UserService {
   rpc GetAllUsers (LoginUser) returns (AllUsers) {}
 }
 
-// The request message containing the user's name.
+// The request message containing the user's name  .
 message LoginUser {
   // User login
   string username = 1;

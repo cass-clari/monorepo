@@ -8,6 +8,7 @@ proto_library(
         "user_service.proto",
     ],
     visibility = [
+        "//calculator-web-app:__pkg__",
         "//user-service/src/main/java/service/server:__pkg__",
         "//user-service/src/main/js:__pkg__",
         "//user-service/src/test/l0/java/service/server:__pkg__",

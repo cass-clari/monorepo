@@ -1,7 +1,6 @@
 package(default_visibility = ["//visibility:public"])
 
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
-load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("//:defs.bzl", "ts_proto_library")
 
@@ -14,25 +13,38 @@ ts_project(
     name = "ts",
     srcs = [
         "client.ts",
+        "controllers/appController.ts",
+        "routes/routes.ts",
         ":user-service",
     ],
+    data = [
+        "public/styles.min.css",
+        "views/calc.hbs",
+        "views/layout.hbs",
+        "views/new_home.hbs",
+    ],
     declaration = True,
+    resolve_json_module = True,
     tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@grpc/grpc-js",
         "//:node_modules/@types/node",
+        "//:node_modules/bent",
+        "//:node_modules/express",
+        "//:node_modules/get-port",
+        "//:node_modules/hbs",
+        "//:node_modules/long",
+        "//:node_modules/nock",
+        "//:node_modules/nodemon",
+        "//:node_modules/semver",
+        "//:node_modules/tape",
     ],
 )
 
 js_binary(
     name = "client",
-    data = [":ts"],
+    data = [
+        ":ts",
+    ],
     entry_point = "client.js",
-)
-
-js_library(
-    name = "client-lib",
-    copy_data_to_bin = True,
-    data = [":ts"],
-    declarations = [":ts"],
 )

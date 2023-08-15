@@ -22,7 +22,7 @@ const transport: pbjs.RPCImpl = function (method, data, callback) {
 const userService = UserService.create(transport, false, false);
 
 userService
-    .login(LoginUser.create({ username: 'cass', pwd: 'cass' }))
+    .login(LoginUser.create({ username: 'ben', pwd: 'ben' }))
     .then((loginResponse) => {
         console.log(`LoginResponse`);
         console.log(

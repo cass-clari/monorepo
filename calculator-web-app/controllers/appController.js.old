@@ -2,7 +2,7 @@ const bent = require('bent')
 const getJSON = bent('json')
 const semverMajor = require('semver/functions/major')
 const semverGt = require('semver/functions/gt')
-const packageJson = require('../package.json')
+//const packageJson = require('../package.json')
 const NODE_API_URL = 'https://nodejs.org/dist/index.json'
 
 const isGrater = (a, b) => semverGt(a.version, b.version)
@@ -17,12 +17,12 @@ const getLatestReleases = (releases) =>
     return acc
   }, {})
 
-exports.dependencies = (req, res) => {
-  const dependencies = Object.entries(
-    packageJson.dependencies
-  ).map(([key, value]) => ({ name: key, version: value }))
-  res.render('dependencies.hbs', { dependencies })
-}
+// exports.dependencies = (req, res) => {
+//   const dependencies = Object.entries(
+//     packageJson.dependencies
+//   ).map(([key, value]) => ({ name: key, version: value }))
+//   res.render('dependencies.hbs', { dependencies })
+// }
 
 exports.minimumSecurePage = async (req, res) => {
   const releases = await getJSON(NODE_API_URL)

@@ -1,8 +1,10 @@
 package(default_visibility = ["//visibility:public"])
 
-load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_image_layer")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("//:defs.bzl", "ts_proto_library")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_image_index", "oci_push", "oci_tarball")
+#load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
 
 ts_proto_library(
     name = "user-service",
@@ -48,3 +50,183 @@ js_binary(
     ],
     entry_point = "client.js",
 )
+
+#[
+#    platform(
+#        name = "a-linux_{}".format(arch),
+#        constraint_values = [
+#            "@platforms//os:linux",
+#            "@platforms//cpu:{}".format(arch if arch != "amd64" else "x86_64"),
+#        ],
+#    )
+#    for arch in [
+#        "amd64",
+#        #        "arm64",
+#    ]
+#]
+#
+#[
+#    js_image_layer(
+#        name = "{}_layers".format(arch),
+#        binary = ":client",
+#        platform = ":a-linux_{}".format(arch),
+#        root = "/app",
+#    )
+#    for arch in [
+#        "amd64",
+#        #        "arm64",
+#    ]
+#]
+#
+#[
+#    oci_image(
+#        name = "{}_image".format(arch),
+#        base = "@debian",
+#        # This is going to be /{root of js_image_layer}/{package_name()}/{name of js_binary}
+#        cmd = ["/app/calculator-web-app/client"],
+#        entrypoint = ["bash"],
+#        tars = [
+#            ":{}_layers".format(arch),
+#        ],
+#    )
+#    for arch in [
+#        "amd64",
+#        #        "arm64",
+#    ]
+#]
+#
+## All images in one :)
+#oci_image_index(
+#    name = "combined",
+#    images = [
+#        #        ":arm64_image",
+#        ":amd64_image",
+#    ],
+#)
+#
+#oci_push(
+#    name = "push",
+#    args = ["-v"],
+#    image = ":combined",
+#    remote_tags = [
+#        "hope3",
+#    ],
+#    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+#)
+
+# Image - ARM64
+#js_image_layer(
+#    name = "layers-linux_arm64",
+#    binary = ":client",
+#    platform = ":linux_arm64",
+#    root = "/app",
+#    visibility = ["//visibility:__pkg__"],
+#)
+#
+#oci_image(
+#    name = "image-linux_arm64",
+#    # Since js_binary depends on bash we have to bring in a base image that has bash
+#    base = "@debian",
+#    # This is going to be /{root of js_image_layer}/{package_name()}/{name of js_binary}
+#    cmd = ["/app/calculator-web-app/client"],
+#    entrypoint = ["bash"],
+#    tars = [
+#        ":layers-linux_arm64",
+#    ],
+#    visibility = ["//visibility:public"],
+#)
+
+# Image - AMD64
+js_image_layer(
+    name = "layers-linux_amd64",
+    binary = ":client",
+    platform = ":linux_amd64",
+    root = "/app",
+    visibility = ["//visibility:__pkg__"],
+)
+
+oci_image(
+    name = "image-linux_amd64",
+    # Since js_binary depends on bash we have to bring in a base image that has bash
+    base = "@debian",
+    # This is going to be /{root of js_image_layer}/{package_name()}/{name of js_binary}
+    cmd = ["/app/calculator-web-app/client"],
+    entrypoint = ["bash"],
+    tars = [
+        ":layers-linux_amd64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+# All images in one :)
+#oci_image_index(
+#    name = "all-images",
+#    images = [
+#        ":image-linux_arm64",
+#        ":image-linux_amd64",
+#    ],
+#)
+#
+platform(
+    name = "linux_amd64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)
+#
+#platform(
+#    name = "linux_arm64",
+#    constraint_values = [
+#        "@platforms//os:linux",
+#        "@platforms//cpu:arm64",
+#    ],
+#)
+#
+#platform_transition_filegroup(
+#    name = "transitioned_image",
+#    srcs = [":image"],
+#    target_platform = select({
+#        "@platforms//cpu:arm64": ":linux_arm64",
+#        "@platforms//cpu:x86_64": ":linux_amd64",
+#    }),
+#)
+
+# Run a local container with:
+# $ bazel run :tarball
+# $ docker run --rm bazel/example:latest
+#oci_tarball(
+#    name = "tarball",
+#    image = ":image",
+#    repo_tags = ["bazel/example:latest"],
+#)
+
+#oci_push(
+#    name = "push",
+#    args = ["-v"],
+#    image = ":all-images",
+#    remote_tags = [
+#        "all-the-things2",
+#    ],
+#    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+#)
+#
+oci_push(
+    name = "push-amd",
+    args = ["-v"],
+    image = ":image-linux_amd64",
+    remote_tags = [
+        "ALLTHETHINGS",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+)
+#
+#oci_push(
+#    name = "push-arm",
+#    args = ["-v"],
+#    image = ":image-linux_arm64",
+#    remote_tags = [
+#        "arm-2",
+#    ],
+#    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+#)

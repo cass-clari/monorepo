@@ -44,7 +44,7 @@ ts_project(
 )
 
 js_binary(
-    name = "client",
+    name = "webcalc",
     data = [
         ":ts",
     ],
@@ -139,7 +139,7 @@ js_binary(
 # Image - AMD64
 js_image_layer(
     name = "layers-linux_amd64",
-    binary = ":client",
+    binary = ":webcalc",
     platform = ":linux_amd64",
     root = "/app",
     visibility = ["//visibility:__pkg__"],
@@ -150,7 +150,7 @@ oci_image(
     # Since js_binary depends on bash we have to bring in a base image that has bash
     base = "@debian",
     # This is going to be /{root of js_image_layer}/{package_name()}/{name of js_binary}
-    cmd = ["/app/calculator-web-app/client"],
+    cmd = ["/app/calculator-web-app/webcalc"],
     entrypoint = ["bash"],
     tars = [
         ":layers-linux_amd64",
@@ -216,7 +216,7 @@ oci_push(
     args = ["-v"],
     image = ":image-linux_amd64",
     remote_tags = [
-        "ALLTHETHINGS",
+        "abc",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
 )

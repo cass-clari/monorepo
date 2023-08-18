@@ -1,0 +1,17 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
+
+proto_library(
+    name = "post",
+    srcs = ["post.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//protos/user:user_proto"],
+)
+
+doc_markdown_compile(
+    name = "post_doc",
+    protos = [
+        ":post",
+        "//protos/user:user_proto",
+    ],
+)

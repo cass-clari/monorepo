@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "protos.calculation";
+
+package protos.calculation;
+
+message User {
+  string id = 1;
+  optional float number1 = 2;
+  optional float number2 = 3;
+  optional float answer = 4;
+  optional string operation = 5;
+  optional int64 timestamp = 6;
+}

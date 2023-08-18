@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "protos.post";
+
+package protos.post;
+
+import "protos/user/user.proto";
+
+message User {
+  string id = 1;
+  optional string message = 2;
+  optional int64 timestamp = 3;
+  optional protos.user.User user = 4;
+}

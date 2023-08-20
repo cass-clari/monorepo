@@ -11,12 +11,14 @@ import main.java.org.example.Subtractor;
 
 public class TestSubtractor {
 
+  private static final double DELTA = 1e-15;
+
 @Test
   public void testNoArgument() throws Exception {
     Subtractor subtractor = new Subtractor();
-    assertEquals(1, subtractor.subtract(2, 1));
-    assertEquals(9, subtractor.subtract(18, 9));
-    assertEquals(0, subtractor.subtract(2, 2));
+    assertEquals(1, subtractor.subtract(2, 1), DELTA);
+    assertEquals(9, subtractor.subtract(18, 9), DELTA);
+    assertEquals(0, subtractor.subtract(2, 2), DELTA);
   }
  
 }

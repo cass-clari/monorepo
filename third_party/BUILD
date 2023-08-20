@@ -22,6 +22,7 @@ java_library(
     name = "protobuf",
     exports = [
         "@maven//:com_google_protobuf_protobuf_java",
+        #        "@maven//:com_google_protobuf_protobuf_java_util",
     ],
 )
 

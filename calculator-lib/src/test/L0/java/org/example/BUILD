@@ -20,7 +20,7 @@ java_test(
         "-d",
         "test_report",
         "-usedefaultlisteners",
-        "false",
+        "true",
         "calculator-lib/src/test/L0/java/org/example/testNG.yaml",
     ],
     data = ["testNG.yaml"],

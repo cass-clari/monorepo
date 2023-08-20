@@ -4,11 +4,21 @@ option java_package = "protos.calculation";
 
 package protos.calculation;
 
-message User {
+import "google/protobuf/timestamp.proto";
+
+message Calculation {
   string id = 1;
-  optional float number1 = 2;
-  optional float number2 = 3;
-  optional float answer = 4;
-  optional string operation = 5;
-  optional int64 timestamp = 6;
+  optional double number1 = 2;
+  optional double number2 = 3;
+  optional double answer = 4;
+  optional Operation operation = 5;
+  optional google.protobuf.Timestamp timestamp = 6;
+}
+
+enum Operation {
+  NO_OP = 0;
+  ADD = 1;
+  SUBTRACT = 2;
+  MULTIPLY = 3;
+  DIVIDE = 4;
 }

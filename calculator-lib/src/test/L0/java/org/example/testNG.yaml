@@ -1,5 +1,6 @@
 name: SingleSuite
 threadCount: 1
+verbose: 2
 
 tests:
   - name: CalculatorTest1

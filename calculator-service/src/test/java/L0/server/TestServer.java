@@ -71,6 +71,7 @@ public class TestServer {
     public void testMultiplyingTwoNumbers() throws Exception {
         CalculatorService service = new CalculatorService();
         Calculation.Builder c = Calculation.newBuilder();
+
         CalculationRequest.Builder cr = CalculationRequest.newBuilder();
         c.setNumber1(1).setNumber2(2).setOperation(CalculationOuterClass.Operation.MULTIPLY);
         cr.setCalculation(c);

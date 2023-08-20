@@ -1,0 +1,24 @@
+load("@rules_java//java:defs.bzl", "java_test")
+
+java_test(
+    name = "server",
+    size = "small",
+    srcs = [
+        "TestServer.java",
+    ],
+    tags = [
+        "L0",
+    ],
+    test_class = "service.server.TestServer",
+    deps = [
+        "//third_party:grpc",
+        "//third_party:grpc-testing",
+        "//third_party:junit4",
+        "//third_party:spring-beans-core-context",
+        "//third_party:spring-test",
+        "//calculator-service/src/main/java/service/server",
+        "//calculator-service/src/main/java/service/server:calculator_service_java_grpc",
+        "//calculator-lib/src/main/java/org/example:CalculatorLibrary",
+        #        "//user-service/src/test/java/common",
+    ],
+)

@@ -11,10 +11,10 @@ java_binary(
         "//calculator-service/src/main/java/service/server:resources",
     ],
     visibility = [
-        "//calculator-service/src/test/java/L0/service/server:__pkg__",
-        "//calculator-service/src/test/java/L1/service/server:__pkg__",
-        "//calculator-service/src/test/java/L2/service/server:__pkg__",
-        "//calculator-service/src/test/java/common:__pkg__",
+        "//calculator-service/src/test/java/L0/server:__pkg__",
+        "//calculator-service/src/test/java/L1/server:__pkg__",
+        "//calculator-service/src/test/java/L2/server:__pkg__",
+        #        "//calculator-service/src/test/java/common:__pkg__",
     ],
     deps = [
         ":calculator_service_java_grpc",
@@ -62,9 +62,9 @@ java_grpc_library(
     ],
     visibility = [
         "//calculator-service/src/main/java/service/client:__pkg__",
-        "//calculator-service/src/test/java/L0/service/server:__pkg__",
-        "//calculator-service/src/test/java/L1/service/server:__pkg__",
-        "//calculator-service/src/test/java/L2/service/server:__pkg__",
-        "//calculator-service/src/test/java/common:__pkg__",
+        "//calculator-service/src/test/java/L0/server:__pkg__",
+        "//calculator-service/src/test/java/L1/server:__pkg__",
+        "//calculator-service/src/test/java/L2/server:__pkg__",
+        #        "//calculator-service/src/test/java/common:__pkg__",
     ],
 )

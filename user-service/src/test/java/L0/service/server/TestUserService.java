@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = UserServiceUnitTestConfiguration.class)
 @ActiveProfiles("L0")
-public class TestServer {
+public class TestUserService {
 
     @Autowired
     private UserService userService;

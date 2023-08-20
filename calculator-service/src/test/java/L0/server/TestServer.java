@@ -22,11 +22,12 @@ public class TestServer {
 //    @Autowired
 //    private UserService userService;
 
+    CalculatorService service = new CalculatorService();
+
     private static final double DELTA = 1e-15;
 
     @Test
-    public void testLoginResponse() throws Exception {
-        CalculatorService service = new CalculatorService();
+    public void testAddingTwoNumbers() throws Exception {
         Calculation.Builder c = Calculation.newBuilder();
         CalculationRequest.Builder cr = CalculationRequest.newBuilder();
         c.setNumber1(1).setNumber2(2).setOperation(CalculationOuterClass.Operation.ADD);
@@ -43,5 +44,67 @@ public class TestServer {
         Calculation responseCalc = results.get(0);
 
         assertEquals(3, responseCalc.getAnswer(), DELTA);
+    }
+
+    @Test
+    public void testSubtractingTwoNumbers() throws Exception {
+        Calculation.Builder c = Calculation.newBuilder();
+        CalculationRequest.Builder cr = CalculationRequest.newBuilder();
+        c.setNumber1(1).setNumber2(2).setOperation(CalculationOuterClass.Operation.SUBTRACT);
+        cr.setCalculation(c);
+
+        StreamRecorder<Calculation> responseObserver = StreamRecorder.create();
+        service.performCalc(cr.build(), responseObserver);
+        if (!responseObserver.awaitCompletion(5, TimeUnit.SECONDS)) {
+            fail("The call did not terminate in time");
+        }
+        assertNull(responseObserver.getError());
+        List<Calculation> results = responseObserver.getValues();
+        assertEquals(1, results.size());
+        Calculation responseCalc = results.get(0);
+
+        assertEquals(-1, responseCalc.getAnswer(), DELTA);
+    }
+
+    @Test
+    public void testMultiplyingTwoNumbers() throws Exception {
+        CalculatorService service = new CalculatorService();
+        Calculation.Builder c = Calculation.newBuilder();
+        CalculationRequest.Builder cr = CalculationRequest.newBuilder();
+        c.setNumber1(1).setNumber2(2).setOperation(CalculationOuterClass.Operation.MULTIPLY);
+        cr.setCalculation(c);
+
+        StreamRecorder<Calculation> responseObserver = StreamRecorder.create();
+        service.performCalc(cr.build(), responseObserver);
+        if (!responseObserver.awaitCompletion(5, TimeUnit.SECONDS)) {
+            fail("The call did not terminate in time");
+        }
+        assertNull(responseObserver.getError());
+        List<Calculation> results = responseObserver.getValues();
+        assertEquals(1, results.size());
+        Calculation responseCalc = results.get(0);
+
+        assertEquals(2, responseCalc.getAnswer(), DELTA);
+    }
+
+    @Test
+    public void testDividingTwoNumbers() throws Exception {
+        CalculatorService service = new CalculatorService();
+        Calculation.Builder c = Calculation.newBuilder();
+        CalculationRequest.Builder cr = CalculationRequest.newBuilder();
+        c.setNumber1(1).setNumber2(2).setOperation(CalculationOuterClass.Operation.DIVIDE);
+        cr.setCalculation(c);
+
+        StreamRecorder<Calculation> responseObserver = StreamRecorder.create();
+        service.performCalc(cr.build(), responseObserver);
+        if (!responseObserver.awaitCompletion(5, TimeUnit.SECONDS)) {
+            fail("The call did not terminate in time");
+        }
+        assertNull(responseObserver.getError());
+        List<Calculation> results = responseObserver.getValues();
+        assertEquals(1, results.size());
+        Calculation responseCalc = results.get(0);
+
+        assertEquals(.5, responseCalc.getAnswer(), DELTA);
     }
 }

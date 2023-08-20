@@ -4,12 +4,12 @@ java_test(
     name = "server",
     size = "small",
     srcs = [
-        "TestServer.java",
+        "TestUserService.java",
     ],
     tags = [
         "L0",
     ],
-    test_class = "service.server.TestServer",
+    test_class = "service.server.TestUserService",
     deps = [
         "//third_party:grpc",
         "//third_party:grpc-testing",

@@ -1,4 +1,37 @@
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_image_index", "oci_push", "oci_tarball")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+#load("//:stamp_tags.bzl", "stamp_tags")
+
+pkg_tar(
+    name = "tar",
+    # Bring the java_binary
+    srcs = ["server_deploy.jar"],
+    include_runfiles = True,
+    strip_prefix = ".",
+)
+
+oci_image(
+    name = "image",
+    base = "@distroless_java",
+    entrypoint = [
+        "java",
+        "-jar",
+        "server_deploy.jar",
+    ],
+    tars = [":tar"],
+)
+
+oci_push(
+    name = "calc-service-image-push",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "calculator-service",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+    #    stamp = 1,
+)
 
 java_binary(
     name = "server",

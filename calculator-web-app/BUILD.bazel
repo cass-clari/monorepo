@@ -219,10 +219,10 @@ platform(
 #
 oci_push(
     name = "push-amd",
-    args = ["-v"],
+    #    args = ["-v"],
     image = ":image-linux_amd64",
     remote_tags = [
-        "abc",
+        "calculator-web-app",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
 )

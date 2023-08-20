@@ -9,6 +9,7 @@ import protos.user.UserOuterClass.User;
 import service.protos.AllCalcsPerUser;
 import service.protos.CalcServiceGrpc;
 import service.protos.CalculationRequest;
+import service.protos.CalculationResponse;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,7 +23,7 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
 //    private UserDAL myUserDAL;
 
     @Override
-    public void performCalc(CalculationRequest calculationRequest, StreamObserver<Calculation> responseObserver) {
+    public void performCalc(CalculationRequest calculationRequest, StreamObserver<CalculationResponse> responseObserver) {
         try {
             System.out.println("Inside performCalc - REQUEST:");
             System.out.println(JsonFormat.printer().print(calculationRequest));
@@ -55,10 +56,13 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
                     break;
             }
 
-            Calculation r = responseCalc.build();
+            CalculationResponse.Builder crb = CalculationResponse.newBuilder();
+            //Calculation r = responseCalc.build();
+            crb.setCalculation(responseCalc);
+            CalculationResponse resp = crb.build();
             System.out.println("Inside performCalc - RESPONSE:");
-            System.out.println(JsonFormat.printer().print(r));
-            responseObserver.onNext(r);
+            System.out.println(JsonFormat.printer().print(resp));
+            responseObserver.onNext(resp);
 
         } catch (Exception e) {
             e.printStackTrace();

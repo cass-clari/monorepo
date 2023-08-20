@@ -5,7 +5,7 @@
             <form action="/calc">
               <input type="text" id="dig1" name="dig1" value="{{dig1}}">
               <select name="op" id="op">
-                  <option value="add">+</option>
+                  <option value="add" {{if (op == 'add)  'SELECTED'  }}>+</option>
                   <option value="subtract">-</option>
                   <option value="multiply">*</option>
                   <option value="divide">/</option>

@@ -1,71 +1,108 @@
-import { UserService, LoginUser, LoginResponse } from '../user-service';
+import {LoginUser, UserService} from '../user-service';
+import {CalcService, CalculationRequest} from '../calculator-service';
 import * as grpc from '@grpc/grpc-js';
 import * as pbjs from 'protobufjs';
 
 const UserServiceClient = grpc.makeGenericClientConstructor({}, 'UserService');
+const CalcServiceClient = grpc.makeGenericClientConstructor({}, 'CalcService');
 
 const client = new UserServiceClient(
     '127.0.0.1:8080',
     grpc.credentials.createInsecure()
 );
 
+const calcClient = new CalcServiceClient(
+    '127.0.0.1:8081',
+    grpc.credentials.createInsecure()
+);
+
 const transport: pbjs.RPCImpl = function (method, data, callback) {
-  client.makeUnaryRequest(
-      `/UserService/${method.name}`,
-      (arg) => Buffer.from(arg),
-      (arg) => arg,
-      data,
-      callback
-  );
+    client.makeUnaryRequest(
+        `/UserService/${method.name}`,
+        (arg) => Buffer.from(arg),
+        (arg) => arg,
+        data,
+        callback
+    );
+};
+
+const calcTransport: pbjs.RPCImpl = function (method, data, callback) {
+    calcClient.makeUnaryRequest(
+        `/CalcService/${method.name}`,
+        (arg) => Buffer.from(arg),
+        (arg) => arg,
+        data,
+        callback
+    );
 };
 
 
 exports.calc = (req, res) => {
-  let dig1 = parseInt(req.query.dig1) || 0;
-  let dig2 = parseInt(req.query.dig2) || 0;
-  let op = req.query.op || 'add';
-  console.log(`dig1 dig2 op: ${dig1} ${dig2} ${op}`);
-  var answer;
-  switch(op) {
-    case "add":
-      answer = dig1 + dig2;
-      break;
-    case "subtract":
-      answer = dig1 - dig2;
-      break;
-    case "multiply":
-      answer = dig1 * dig2;
-      break;
-    case "divide":
-      answer = dig1 / dig2;
-      break;
-    default:
-      answer = "The answer will appear here"
-      // code block
-  }
-  res.render('calc.hbs', {'result': answer, 'dig1': dig1, 'dig2': dig2, "op": op });
+    let dig1 = parseFloat(req.query.dig1) || 0.0;
+    let dig2 = parseFloat(req.query.dig2) || 0.0;
+    let op = req.query.op || 'undeclared';
+    console.log(`dig1 dig2 op: ${dig1} ${dig2} ${op}`);
+    var answer;
+
+    if (op !== 'undeclared') {
+        const cService = CalcService.create(calcTransport, false, false);
+        console.log(`dig1 dig2 op: ${dig1} ${dig2} ${op}`);
+        var operationNum;
+
+        switch (op) {
+            case "add":
+                operationNum = 1;
+                break;
+            case "subtract":
+                operationNum = 2;
+                break;
+            case "multiply":
+                operationNum = 3;
+                break;
+            case "divide":
+                operationNum = 4;
+                break;
+        }
+        cService
+            .performCalc(CalculationRequest.create({calculation: {number1: dig1, number2: dig2, operation: operationNum}}))
+            .then((calcResponse) => {
+                console.log(`calcResponse`);
+                console.log(
+                    `response: ${JSON.stringify(calcResponse)}`
+                );
+                answer = calcResponse.calculation.answer;
+                console.log(`answer: ${answer}`);
+                res.render('calc.hbs', {'result': answer, 'dig1': dig1, 'dig2': dig2, "op": op});
+            });
+
+    } else {
+        answer = "The answer will appear here"
+        res.render('calc.hbs', {'result': answer, 'dig1': dig1, 'dig2': dig2, "op": op});
+    }
+
+    //res.render('calc.hbs', {'result': answer, 'dig1': dig1, 'dig2': dig2, "op": op });
 }
 
 exports.home = (req, res) => {
 
-  let username = req.query.username || "";
-  let password = req.query.password || "";
+    let username = req.query.username || "";
+    let password = req.query.password || "";
 
-  console.log(`username password: ${username} ${password}`);
+    console.log(`username password: ${username} ${password}`);
 
-  if(username !== "" && password !== "") {
-    const userService = UserService.create(transport, false, false);
+    if (username !== "" && password !== "") {
+        const userService = UserService.create(transport, false, false);
 
-    userService
-        .login(LoginUser.create({ username: username, pwd: password }))
-        .then((loginResponse) => {
-          console.log(`LoginResponse`);
-          console.log(
-              `User: ${JSON.stringify(loginResponse)}`
-          );
-        });
-    res.render('calc.hbs', {'result': 0, 'dig1': 0, 'dig2': 0, "op": "add" })
-  } else {
-    res.render('new_home.hbs')
-  }
+        userService
+            .login(LoginUser.create({username: username, pwd: password}))
+            .then((loginResponse) => {
+                console.log(`LoginResponse`);
+                console.log(
+                    `User: ${JSON.stringify(loginResponse)}`
+                );
+            });
+        res.render('calc.hbs', {'result': 0, 'dig1': 0, 'dig2': 0, "op": "add"})
+    } else {
+        res.render('new_home.hbs')
+    }
 }

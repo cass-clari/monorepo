@@ -37,7 +37,7 @@ public class CalculatorServiceServer implements Runnable{
         //calculatorService.getMyUserDAL().setConnectionProvider(connectionProvider);
 
         /* The port on which the server should run */
-        int port = 8080;
+        int port = 8081;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
                 .addService(calculatorService)
                 .addService(ProtoReflectionService.newInstance())

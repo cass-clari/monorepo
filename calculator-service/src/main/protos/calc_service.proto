@@ -8,7 +8,7 @@ import "protos/calculation/calculation.proto";
 
 service CalcService {
   // Logs in a user
-  rpc PerformCalc (CalculationRequest) returns (.protos.calculation.Calculation) {}
+  rpc PerformCalc (CalculationRequest) returns (CalculationResponse) {}
   rpc GetAllCalsPerUser (.protos.user.User) returns (AllCalcsPerUser) {}
 }
 
@@ -16,6 +16,10 @@ service CalcService {
 message CalculationRequest {
   .protos.user.User user = 1;
   .protos.calculation.Calculation calculation = 2;
+}
+
+message CalculationResponse {
+  .protos.calculation.Calculation calculation = 1;
 }
 
 message AllCalcsPerUser {

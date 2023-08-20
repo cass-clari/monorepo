@@ -11,12 +11,18 @@ ts_proto_library(
     proto = "//user-service/src/main/protos",
 )
 
+ts_proto_library(
+    name = "calculator-service",
+    proto = "//calculator-service/src/main/protos",
+)
+
 ts_project(
     name = "ts",
     srcs = [
         "client.ts",
         "controllers/appController.ts",
         "routes/routes.ts",
+        ":calculator-service",
         ":user-service",
     ],
     data = [

@@ -4,5 +4,6 @@
     "module": "CommonJS",
     "declaration": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true
   }
 }

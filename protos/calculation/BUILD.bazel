@@ -1,0 +1,19 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
+
+proto_library(
+    name = "calculation",
+    srcs = ["calculation.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//protos/user:user_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+doc_markdown_compile(
+    name = "calculation_doc",
+    protos = [
+        ":calculation",
+    ],
+)

@@ -8,45 +8,47 @@ import static org.junit.Assert.assertEquals;
 
 public class TestCalculator {
 
+    private static final double DELTA = 1e-15;
+
     @Test
     public void test4() {
         Calculator c = new Calculator();
-        assertEquals(4, c.addTwoInts(2, 2));
+        assertEquals(4, c.addTwoNumbers(2, 2), DELTA);
     }
 
     @Test
     public void test5() {
         Calculator c = new Calculator();
-        assertEquals(5, c.addTwoInts(3, 2));
+        assertEquals(5, c.addTwoNumbers(3, 2), DELTA);
     }
 
     @Test
     public void test100() {
         Calculator c = new Calculator();
-        assertEquals(100, c.addTwoInts(50, 50));
+        assertEquals(100, c.addTwoNumbers(50, 50), DELTA);
     }
 
     @Test
     public void testS10() {
         Calculator c = new Calculator();
-        assertEquals(10, c.subtractTwoInts(60, 50));
+        assertEquals(10, c.subtractTwoNumbers(60, 50), DELTA);
     }
 
     @Test
     public void testS11() {
         Calculator c = new Calculator();
-        assertEquals(3000, c.multiplyTwoInts(60, 50));
+        assertEquals(3000, c.multiplyTwoNumbers(60, 50), DELTA);
     }
 
     @Test
     public void testS12() {
         Calculator c = new Calculator();
-        assertEquals(10, c.divideTwoInts(60, 6));
+        assertEquals(10, c.divideTwoNumbers(60, 6), DELTA);
     }
 
-    @Test(expectedExceptions = RuntimeException.class)
+    @Test
     public void testS13() {
         Calculator c = new Calculator();
-        assertEquals(10, c.divideTwoInts(60, 0));
+        assertEquals(Double.POSITIVE_INFINITY, c.divideTwoNumbers(60, 0), DELTA);
     }
 }

@@ -1,0 +1,70 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+java_binary(
+    name = "server",
+    srcs = glob([
+        "*.java",
+    ]),
+    main_class = "service.server.CalculatorServiceServer",
+    resource_strip_prefix = "calculator-service/src/main/java/service/server",
+    resources = [
+        "//calculator-service/src/main/java/service/server:resources",
+    ],
+    visibility = [
+        "//calculator-service/src/test/java/L0/server:__pkg__",
+        "//calculator-service/src/test/java/L1/server:__pkg__",
+        "//calculator-service/src/test/java/L2/server:__pkg__",
+        #        "//calculator-service/src/test/java/common:__pkg__",
+    ],
+    deps = [
+        ":calculator_service_java_grpc",
+        ":server-lib",
+        "//calculator-lib/src/main/java/org/example:CalculatorLibrary",
+        "//third_party:grpc",
+        "//third_party:snake-yaml",
+        "//third_party:spring-beans-core-context",
+    ],
+)
+
+filegroup(
+    name = "resources",
+    srcs = [
+        "application.yml",
+    ],
+)
+
+java_library(
+    name = "server-lib",
+    srcs = glob([
+        "*.java",
+    ]),
+    visibility = [
+        "//calculator-service/src/test/java/L0/service/server:__pkg__",
+        "//calculator-service/src/test/java/L1/service/server:__pkg__",
+        "//calculator-service/src/test/java/L2/service/server:__pkg__",
+        "//calculator-service/src/test/java/common:__pkg__",
+    ],
+    deps = [
+        ":calculator_service_java_grpc",
+        "//calculator-lib/src/main/java/org/example:CalculatorLibrary",
+        "//third_party:grpc",
+        "//third_party:spring-beans-core-context",
+    ],
+)
+
+java_grpc_library(
+    name = "calculator_service_java_grpc",
+    protos = [
+        "//calculator-service/src/main/protos",
+        "//protos/calculation",
+        "//protos/user:email_address_proto",
+        "//protos/user:user_proto",
+    ],
+    visibility = [
+        "//calculator-service/src/main/java/service/client:__pkg__",
+        "//calculator-service/src/test/java/L0/server:__pkg__",
+        "//calculator-service/src/test/java/L1/server:__pkg__",
+        "//calculator-service/src/test/java/L2/server:__pkg__",
+        #        "//calculator-service/src/test/java/common:__pkg__",
+    ],
+)

@@ -2,7 +2,7 @@ package main.java.org.example;
 
 public class Multiplier {
     
-    public int multiply( int i, int j ) {
+    public double multiply( double i, double j ) {
         return i * j;
     }
 

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "service.protos";
+
+import "protos/user/user.proto";
+import "protos/calculation/calculation.proto";
+
+service CalcService {
+  // Logs in a user
+  rpc PerformCalc (CalculationRequest) returns (.protos.calculation.Calculation) {}
+  rpc GetAllCalsPerUser (.protos.user.User) returns (AllCalcsPerUser) {}
+}
+
+// The request message containing the user's calculation request.
+message CalculationRequest {
+  .protos.user.User user = 1;
+  .protos.calculation.Calculation calculation = 2;
+}
+
+message AllCalcsPerUser {
+  repeated .protos.calculation.Calculation calculation = 1;
+}

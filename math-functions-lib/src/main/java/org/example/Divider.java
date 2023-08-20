@@ -2,10 +2,10 @@
 
 public class Divider {
     
-    public int divide( int i, int j ) {
+    public double divide( double i, double j ) {
         return i / j;
     }
-    public int divideByZero( int i, int j ) {
+    public double divideByZero( double i, double j ) {
 
         if (j == 0) {
             throw new RuntimeException("Cannot divide by zero");

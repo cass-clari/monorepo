@@ -1,6 +1,7 @@
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
+#load("//:push-modes.bzl", "push_mode")
 
 pkg_tar(
     name = "tar",
@@ -21,16 +22,70 @@ oci_image(
     tars = [":tar"],
 )
 
+#push_mode(
+#    name = "push_mode",
+#    build_setting_default = "DEV",
+#)
+#
+#config_setting(
+#    name = "push_mode_dev",
+#    flag_values = {
+#        ":push_mode": "DEV",
+#    },
+#)
+#
+#config_setting(
+#    name = "push_mode_integration",
+#    flag_values = {
+#        ":push_mode": "INTEGRATION",
+#    },
+#)
+#
+#config_setting(
+#    name = "push_mode_prod",
+#    flag_values = {
+#        ":push_mode": "PROD",
+#    },
+#)
+
+oci_push(
+    name = "push-image-dev",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "user-service-dev",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+)
+
+oci_push(
+    name = "push-image-integration",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "user-service-integration",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+)
+
+oci_push(
+    name = "push-image-prod",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "user-service-prod",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+)
+
 oci_push(
     name = "push-image",
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
         "user-service",
-        "user-service-integration",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
-    #    stamp = 1,
 )
 
 java_binary(

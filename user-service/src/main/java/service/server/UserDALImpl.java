@@ -46,6 +46,7 @@ public class UserDALImpl implements UserDAL {
     }
 
     public void createUser(UserOuterClass.User user) {
+        System.out.println("I am creating a user: " + user.getFirstName());
         try (Connection conn = this.connectionProvider.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(
                     "insert into users(username,password,firstname,lastname,email_address) values(?,?,?,?,?)"

@@ -218,7 +218,7 @@ platform(
 #)
 #
 oci_push(
-    name = "push-amd",
+    name = "push-image",
     #    args = ["-v"],
     image = ":image-linux_amd64",
     remote_tags = [

@@ -29,7 +29,7 @@ oci_push(
     remote_tags = [
         "calculator-service",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
     #    stamp = 1,
 )
 

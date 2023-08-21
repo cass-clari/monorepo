@@ -53,9 +53,9 @@ oci_push(
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
-        "user-service-dev",
+        "dev",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/user-service",
 )
 
 oci_push(
@@ -83,7 +83,7 @@ oci_push(
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
-        "user-service",
+        "dev",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/user-service",
 )

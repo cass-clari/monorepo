@@ -27,7 +27,7 @@ oci_push(
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
-        "calculator-service",
+        "dev",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
     #    stamp = 1,

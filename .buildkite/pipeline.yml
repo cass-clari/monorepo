@@ -7,6 +7,7 @@ steps:
     label: "L0"
     agents:
       queue: "default"
+    cancel_on_build_failing: true
   - command:
       - "bazel coverage --combined_report=lcov --instrumentation_filter=\"-@com_google_protobuf,-@io_grpc_grpc_java,-.*/test/*\" --test_tag_filters=L1 --test_timeout=60 --test_output=errors //..."
       - "codecov -F L1 -t d60cc17b-8753-4639-9d85-79dd58f645a1 -f bazel-out/_coverage/_coverage_report.dat"
@@ -14,6 +15,7 @@ steps:
     label: "L1"
     agents:
       queue: "default"
+    cancel_on_build_failing: true
 #  - command:
 #      - "bazel coverage --combined_report=lcov --instrumentation_filter=\"-@com_google_protobuf,-@io_grpc_grpc_java,-.*/test/*\" --test_tag_filters=L2 --test_timeout=60 --test_output=errors //..."
 #      - "codecov -F L2 -t d60cc17b-8753-4639-9d85-79dd58f645a1 -f bazel-out/_coverage/_coverage_report.dat"
@@ -21,3 +23,10 @@ steps:
 #    label: "L2"
 #    agents:
 #      queue: "default"
+  - command:
+      - "bazel query \"//...\" | grep \"push-image\\b\""
+      - "./buildkite_scripts/push_images.sh"
+    label: "Push images"
+    agents:
+      queue: "default"
+    cancel_on_build_failing: true

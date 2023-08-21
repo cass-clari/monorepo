@@ -7,12 +7,12 @@ const UserServiceClient = grpc.makeGenericClientConstructor({}, 'UserService');
 const CalcServiceClient = grpc.makeGenericClientConstructor({}, 'CalcService');
 
 const client = new UserServiceClient(
-    '127.0.0.1:8080',
+    process.env.USER_SERVICE_HOST_PORT,
     grpc.credentials.createInsecure()
 );
 
 const calcClient = new CalcServiceClient(
-    '127.0.0.1:8081',
+    process.env.CALC_SERVICE_HOST_PORT,
     grpc.credentials.createInsecure()
 );
 

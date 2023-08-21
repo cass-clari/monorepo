@@ -23,7 +23,7 @@ oci_image(
 )
 
 oci_push(
-    name = "calc-service-image-push",
+    name = "push-image",
     #    args = ["-v"],
     image = ":image",
     remote_tags = [

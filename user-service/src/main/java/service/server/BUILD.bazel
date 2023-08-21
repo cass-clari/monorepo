@@ -22,7 +22,7 @@ oci_image(
 )
 
 oci_push(
-    name = "image-push",
+    name = "push-image",
     #    args = ["-v"],
     image = ":image",
     remote_tags = [

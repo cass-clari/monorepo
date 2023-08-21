@@ -24,7 +24,7 @@ steps:
 #    agents:
 #      queue: "default"
   - command:
-      - "bazel run //...:push-image"
+      - "bazel run `bazel query //... | grep \"push-image\\b\"`"
     label: "push images"
     agents:
       queue: "default"

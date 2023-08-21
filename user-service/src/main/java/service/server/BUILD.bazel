@@ -83,9 +83,9 @@ oci_push(
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
-        "user-service",
+        "user-service-test",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+    repository = "quay.io/casspc/cdemo",
 )
 
 java_binary(

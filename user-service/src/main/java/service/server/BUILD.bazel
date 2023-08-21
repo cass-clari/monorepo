@@ -27,6 +27,7 @@ oci_push(
     image = ":image",
     remote_tags = [
         "user-service",
+        "user-service-integration",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
     #    stamp = 1,

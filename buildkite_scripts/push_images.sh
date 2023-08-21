@@ -4,6 +4,8 @@
 echo
 echo "Pushing updated images..."
 
+aws ecr get-login-password --region us-west-2 | crane auth login 091232730366.dkr.ecr.us-west-2.amazonaws.com -u AWS --password-stdin
+
 bazel query "//..." | grep ":push-image\b" > targetsToRun.txt
 
 targets=`cat targetsToRun.txt`

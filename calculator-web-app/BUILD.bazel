@@ -224,7 +224,7 @@ oci_push(
     remote_tags = [
         "calculator-web-app",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
 )
 #
 #oci_push(

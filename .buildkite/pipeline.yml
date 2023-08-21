@@ -24,8 +24,9 @@ steps:
 #    agents:
 #      queue: "default"
   - command:
-      - "bazel run `bazel query //... | grep \"push-image\\b\"`"
-    label: "push images"
+      - "bazel query \"//...\" | grep \"push-image\\b\""
+      - "./buildkite_scripts/push_images.sh"
+    label: "Push images"
     agents:
       queue: "default"
     cancel_on_build_failing: true

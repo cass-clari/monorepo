@@ -23,7 +23,7 @@ oci_image(
 )
 
 oci_push(
-    name = "push-image",
+    name = "push-image-dev",
     #    args = ["-v"],
     image = ":image",
     remote_tags = [
@@ -32,6 +32,39 @@ oci_push(
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
     #    stamp = 1,
 )
+
+oci_push(
+    name = "push-image-integration",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "integration",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+    #    stamp = 1,
+)
+
+oci_push(
+    name = "push-image-prod",
+    #    args = ["-v"],
+    image = ":image",
+    remote_tags = [
+        "prod",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+    #    stamp = 1,
+)
+
+#oci_push(
+#    name = "push-image",
+#    #    args = ["-v"],
+#    image = ":image",
+#    remote_tags = [
+#        "dev",
+#    ],
+#    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+#    #    stamp = 1,
+#)
 
 java_binary(
     name = "server",

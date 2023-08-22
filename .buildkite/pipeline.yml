@@ -30,3 +30,6 @@ steps:
     agents:
       queue: "default"
     cancel_on_build_failing: true
+  - trigger: push-to-integration
+    async: true
+    branches: main

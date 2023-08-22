@@ -16,4 +16,3 @@ steps:
     label: "Push images - Prod"
     depends_on: "integration-tests"
     async: true
-    cancel_on_build_failing: true

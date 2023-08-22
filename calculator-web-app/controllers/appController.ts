@@ -47,6 +47,7 @@ exports.calc = (req, res) => {
     if (op !== 'undeclared') {
         const cService = CalcService.create(calcTransport, false, false);
         console.log(`dig1 dig2 op: ${dig1} ${dig2} ${op}`);
+        console.log(`diggity diggity diggity`);
         var operationNum;
 
         switch (op) {

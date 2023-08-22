@@ -1,0 +1,8 @@
+steps:
+  - command:
+      - "bazel query \"//...\" | grep \"push-image-integration$\""
+      - "./buildkite_scripts/push_images_integration.sh"
+    label: "Push images - Integration"
+    agents:
+      queue: "default"
+    cancel_on_build_failing: true

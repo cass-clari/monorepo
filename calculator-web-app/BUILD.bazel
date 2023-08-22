@@ -217,12 +217,33 @@ platform(
 #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/cass-ecr",
 #)
 #
+
 oci_push(
-    name = "push-image",
+    name = "push-image-dev",
     #    args = ["-v"],
     image = ":image-linux_amd64",
     remote_tags = [
         "dev",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+)
+
+oci_push(
+    name = "push-image-integration",
+    #    args = ["-v"],
+    image = ":image-linux_amd64",
+    remote_tags = [
+        "integration",
+    ],
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+)
+
+oci_push(
+    name = "push-image-prod",
+    #    args = ["-v"],
+    image = ":image-linux_amd64",
+    remote_tags = [
+        "prod",
     ],
     repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
 )

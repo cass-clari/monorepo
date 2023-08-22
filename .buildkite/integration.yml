@@ -14,6 +14,6 @@ steps:
     cancel_on_build_failing: true
   - trigger: "push-to-prod"
     label: "Push images - Prod"
-    depends-on: "integration-tests"
+    depends_on: "integration-tests"
     async: true
     cancel_on_build_failing: true

@@ -12,7 +12,8 @@ steps:
       - "sleep 5"
     key: "integration-tests"
     cancel_on_build_failing: true
+    label: "Execute L2 Tests"
   - trigger: "push-to-prod"
-    label: "Push images - Prod"
+    label: "Trigger: Push images to Prod"
     depends_on: "integration-tests"
     async: true

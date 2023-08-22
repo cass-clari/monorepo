@@ -9,7 +9,7 @@ steps:
     cancel_on_build_failing: true
   - command:
       - "echo Running integration tests..."
-      - "sleep 5"
+      - "sleep 20"
     key: "integration-tests"
     cancel_on_build_failing: true
     label: "Execute L2 Tests"

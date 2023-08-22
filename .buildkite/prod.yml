@@ -1,0 +1,9 @@
+steps:
+  - command:
+      - 'cat .buildkite/prod.yml'
+      - "bazel query \"//...\" | grep \"push-image-prod\\$\""
+      - "./buildkite_scripts/push_images_prod.sh"
+    label: "Push images - Prod"
+    agents:
+      queue: "default"
+    cancel_on_build_failing: true

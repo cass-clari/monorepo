@@ -7,3 +7,13 @@ steps:
     agents:
       queue: "default"
     cancel_on_build_failing: true
+  - command:
+      - "echo Running integration tests..."
+      - "sleep 5"
+    key: "integration-tests"
+    cancel_on_build_failing: true
+  - trigger: "push-to-prod"
+    label: "Push images - Prod"
+    depends-on: "integration-tests"
+    async: true
+    cancel_on_build_failing: true

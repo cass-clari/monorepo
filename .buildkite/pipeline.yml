@@ -21,9 +21,10 @@ steps:
       - "bazel query \"//...\" | grep \"push-image\\b\""
       - "./buildkite_scripts/push_images.sh"
     label: "Push images"
+    key: "push-dev-images"
     agents:
       queue: "default"
     cancel_on_build_failing: true
   - trigger: "push-to-integration"
     async: true
-    branches: "main"
+    depends_on: "push-dev-images"

@@ -26,8 +26,6 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
     public void performCalc(CalculationRequest calculationRequest, StreamObserver<CalculationResponse> responseObserver) {
         try {
             System.out.println("Inside performCalc - REQUEST:");
-            System.out.println("MOAR!! Inside performCalc - REQUEST:");
-            System.out.println("EVEN MOAR!!!!!!!!!!!!!!!!!!!!!!! Inside performCalc - REQUEST:");
             System.out.println(JsonFormat.printer().print(calculationRequest));
 
 

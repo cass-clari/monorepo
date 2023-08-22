@@ -15,7 +15,7 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
     public void login(LoginUser req, StreamObserver<LoginResponse> responseObserver) {
-        System.out.println("Received request and I like it!: " + req.toString());
+        System.out.println("Received request and I like it!!!!!!: " + req.toString());
         User u = myUserDAL.validateUser(req.getUsername(), req.getPwd());
         LoginResponse reply = LoginResponse.newBuilder().setMessage("Hello there!").setStatus(200).setUser(u).build();
         responseObserver.onNext(reply);

@@ -21,5 +21,10 @@ public class Calculator {
         Subtractor subtractor = new Subtractor();
         return subtractor.subtract(i, j);
     }
+
+    public double modTwoNumbers(double i, double j) {
+        Subtractor subtractor = new Subtractor();
+        return subtractor.subtract(i, j);
+    }
     
 }

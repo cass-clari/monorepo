@@ -55,17 +55,6 @@ oci_push(
     #    stamp = 1,
 )
 
-#oci_push(
-#    name = "push-image",
-#    #    args = ["-v"],
-#    image = ":image",
-#    remote_tags = [
-#        "dev",
-#    ],
-#    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-#    #    stamp = 1,
-#)
-
 java_binary(
     name = "server",
     srcs = glob([

@@ -54,6 +54,9 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
                 case DIVIDE:
                     responseCalc.setAnswer(calculator.divideTwoNumbers(c.getNumber1(), c.getNumber2()));
                     break;
+                case REMAINDER:
+                    responseCalc.setAnswer(calculator.modTwoNumbers(c.getNumber1(), c.getNumber2()));
+                    break;
             }
 
             CalculationResponse.Builder crb = CalculationResponse.newBuilder();

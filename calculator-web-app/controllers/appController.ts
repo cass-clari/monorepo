@@ -63,6 +63,9 @@ exports.calc = (req, res) => {
             case "divide":
                 operationNum = 4;
                 break;
+            case "remainder":
+                operationNum = 5;
+                break;
         }
         cService
             .performCalc(CalculationRequest.create({calculation: {number1: dig1, number2: dig2, operation: operationNum}}))

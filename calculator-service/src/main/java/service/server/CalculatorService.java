@@ -63,7 +63,7 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
             //Calculation r = responseCalc.build();
             crb.setCalculation(responseCalc);
             CalculationResponse resp = crb.build();
-            System.out.println("Inside performCalc - RESPONSE:");
+            System.out.println("Inside performCalc - RESPONSE::");
             System.out.println(JsonFormat.printer().print(resp));
             responseObserver.onNext(resp);
             System.out.println("onnext done");

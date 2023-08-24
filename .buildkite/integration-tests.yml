@@ -1,5 +1,6 @@
 steps:
   - command:
+      - 'cat .buildkite/integration-tests.yml'
       - "echo Running integration tests..."
       - "sleep 30"
     key: "integration-tests"

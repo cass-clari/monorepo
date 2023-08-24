@@ -1,6 +1,6 @@
 steps:
   - command:
-      - 'cat .buildkite/integration.yml'
+      - 'cat .buildkite/integration-push.yml'
       - "bazel query \"//...\" | grep \"push-image-integration\\$\""
       - "./buildkite_scripts/push_images_integration.sh"
     label: "Push images - Integration"

@@ -12,5 +12,6 @@ app.use(express.static(path.join(__dirname, '/public')))
 
 app.listen(PORT, () => {
     console.log(`MORE app is running on PORT ${PORT}`)
+    console.log(`MORE app is running on PORT ${PORT}`)
 })
 module.exports = app

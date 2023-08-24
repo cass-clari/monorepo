@@ -71,6 +71,7 @@ exports.calc = (req, res) => {
             .performCalc(CalculationRequest.create({calculation: {number1: dig1, number2: dig2, operation: operationNum}}))
             .then((calcResponse) => {
                 console.log(`calcResponse!!`);
+                console.log(`calcResponse!!`);
                 console.log(
                     `response: ${JSON.stringify(calcResponse)}`
                 );

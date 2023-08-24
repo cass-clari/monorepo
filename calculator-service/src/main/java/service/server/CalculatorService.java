@@ -28,6 +28,7 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
             System.out.println("Inside performCalc - REQUEST:");
             System.out.println("Inside performCalc - REQUEST:");
             System.out.println("Inside performCalc - REQUEST:");
+            System.out.println("Inside performCalc - REQUEST:");
             System.out.println(JsonFormat.printer().print(calculationRequest));
 
 

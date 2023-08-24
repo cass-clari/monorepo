@@ -29,8 +29,8 @@ oci_push(
     remote_tags = [
         "dev",
     ],
-    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "index.docker.io/casspc/calculator-service",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+    #    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 
@@ -41,8 +41,8 @@ oci_push(
     remote_tags = [
         "integration",
     ],
-    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "index.docker.io/casspc/calculator-service",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+    #    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 
@@ -53,8 +53,8 @@ oci_push(
     remote_tags = [
         "prod",
     ],
-    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "index.docker.io/casspc/calculator-service",
+    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
+    #    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 

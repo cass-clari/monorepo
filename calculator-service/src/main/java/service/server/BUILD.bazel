@@ -30,7 +30,7 @@ oci_push(
         "dev",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "hub.docker.com/casspc/calculator-service",
+    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 
@@ -42,7 +42,7 @@ oci_push(
         "integration",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "hub.docker.com/casspc/calculator-service",
+    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 
@@ -54,7 +54,7 @@ oci_push(
         "prod",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-service",
-    repository = "hub.docker.com/casspc/calculator-service",
+    repository = "index.docker.io/casspc/calculator-service",
     #    stamp = 1,
 )
 

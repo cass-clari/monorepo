@@ -26,7 +26,7 @@ public class TestUserService {
     @Autowired
     private UserService userService;
 
-    
+
     @Test
     public void testLoginResponse() throws Exception {
         LoginUser request = LoginUser.newBuilder()

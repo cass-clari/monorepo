@@ -94,7 +94,7 @@ oci_push(
         "dev",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
-    repository = "hub.docker.com/casspc/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )
 
 oci_push(
@@ -105,7 +105,7 @@ oci_push(
         "integration",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
-    repository = "hub.docker.com/casspc/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )
 
 oci_push(
@@ -116,5 +116,5 @@ oci_push(
         "prod",
     ],
     #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
-    repository = "hub.docker.com/casspc/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )

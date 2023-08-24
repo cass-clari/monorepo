@@ -26,11 +26,8 @@ public class CalculatorService extends CalcServiceGrpc.CalcServiceImplBase {
     public void performCalc(CalculationRequest calculationRequest, StreamObserver<CalculationResponse> responseObserver) {
         try {
             System.out.println("Inside performCalc - REQUEST:");
-            System.out.println("Inside performCalc - REQUEST:");
-            System.out.println("Inside performCalc - REQUEST:");
-            System.out.println("Inside performCalc - REQUEST:");
             System.out.println(JsonFormat.printer().print(calculationRequest));
-
+            System.out.println("Cass was here");
 
             User u = calculationRequest.getUser();
             Calculation c = calculationRequest.getCalculation();

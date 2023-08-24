@@ -93,7 +93,8 @@ oci_push(
     remote_tags = [
         "dev",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )
 
 oci_push(
@@ -103,7 +104,8 @@ oci_push(
     remote_tags = [
         "integration",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )
 
 oci_push(
@@ -113,5 +115,6 @@ oci_push(
     remote_tags = [
         "prod",
     ],
-    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    #    repository = "091232730366.dkr.ecr.us-west-2.amazonaws.com/calculator-web-app",
+    repository = "index.docker.io/casspc/calculator-web-app",
 )

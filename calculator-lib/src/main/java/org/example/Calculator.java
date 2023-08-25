@@ -23,8 +23,8 @@ public class Calculator {
     }
 
     public double modTwoNumbers(double i, double j) {
-        Subtractor subtractor = new Subtractor();
-        return subtractor.subtract(i, j);
+        Modder modder = new Modder();
+        return modder.mod(i, j);
     }
     
 }

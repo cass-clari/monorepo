@@ -115,7 +115,7 @@ public class TestServer {
         CalculatorService service = new CalculatorService();
         Calculation.Builder c = Calculation.newBuilder();
         CalculationRequest.Builder cr = CalculationRequest.newBuilder();
-        c.setNumber1(2).setNumber2(2).setOperation(CalculationOuterClass.Operation.REMAINDER);
+        c.setNumber1(10).setNumber2(4).setOperation(CalculationOuterClass.Operation.REMAINDER);
         cr.setCalculation(c);
 
         StreamRecorder<CalculationResponse> responseObserver = StreamRecorder.create();
@@ -128,6 +128,6 @@ public class TestServer {
         assertEquals(1, results.size());
         Calculation responseCalc = results.get(0).getCalculation();
 
-        assertEquals(0, responseCalc.getAnswer(), DELTA);
+        assertEquals(2, responseCalc.getAnswer(), DELTA);
     }
 }

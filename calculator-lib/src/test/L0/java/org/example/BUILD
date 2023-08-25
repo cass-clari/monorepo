@@ -14,7 +14,7 @@ java_library(
 )
 
 java_test(
-    name = "TestCalculator",
+    name = "example",
     size = "small",
     args = [
         "-d",

@@ -51,4 +51,11 @@ public class TestCalculator {
         Calculator c = new Calculator();
         assertEquals(Double.POSITIVE_INFINITY, c.divideTwoNumbers(60, 0), DELTA);
     }
+
+    @Test
+    public void testModding() {
+        Calculator c = new Calculator();
+        System.out.println("Modding 12 by 7, should get 5");
+        assertEquals(5, c.modTwoNumbers(12, 7), DELTA);
+    }
 }

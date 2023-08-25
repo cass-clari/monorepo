@@ -1,8 +1,8 @@
 steps:
   - command:
-      - 'cat .buildkite/integration-tests.yml'
+#      - 'cat .buildkite/integration-tests.yml'
       - "echo Running integration tests..."
-      - "sleep 1"
+#      - "sleep 1"
     key: "integration-tests"
     cancel_on_build_failing: true
     label: "Execute L2 Tests"

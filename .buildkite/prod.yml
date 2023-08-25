@@ -1,8 +1,8 @@
 steps:
   - command:
       - 'cat .buildkite/prod.yml'
-      - "bazel query \"//...\" | grep \"push-image-prod\\$\""
-      - "./buildkite_scripts/push_images_prod.sh"
+#      - "bazel query \"//...\" | grep \"push-image-prod\\$\""
+#      - "./buildkite_scripts/push_images_prod.sh"
     label: "Push images - Prod"
     agents:
       queue: "default"
